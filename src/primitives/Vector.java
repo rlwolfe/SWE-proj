@@ -41,7 +41,7 @@ public class Vector extends Point{
 	}
 	
 	double lengthSquared() {
-		
+		//TODO
 	}
 	
 	double length() {
