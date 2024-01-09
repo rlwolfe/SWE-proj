@@ -3,6 +3,8 @@ package primitives;
 public class Point {
 	 final protected Double3 xyz;
 	 
+	 public static final Point ZERO = new Point(0, 0, 0);
+	 
 	 public Point(double p1, double p2, double p3){
 		 xyz = new Double3(p1, p2, p3);
 	 }
@@ -26,7 +28,7 @@ public class Point {
 	{
 		return xyz.toString();
 	}
-	Point add(Vector vec)
+	public Point add(Vector vec)
 	{
 		double p1,p2,p3;
 		
@@ -36,19 +38,19 @@ public class Point {
 		return new Point(p1,p2,p3);
 	} 
 
-	double distance (Point p)
+	public double distance (Point p)
 	{
-		return Math.sqrt(distanceSqaured(p));
+		return Math.sqrt(distanceSquared(p));
 	}
 	
-	double distanceSqaured(Point p)
+	public double distanceSquared(Point p)
 	{
 		return (((this.xyz.d1-p.xyz.d1)*(this.xyz.d1-p.xyz.d1))
 				+ ((this.xyz.d2+p.xyz.d2)*(this.xyz.d2+p.xyz.d2))
 				+ ((this.xyz.d3-p.xyz.d3)*(this.xyz.d3-p.xyz.d3)));
 	}
 	
-	Vector subtract(Point p)
+	public Vector subtract(Point p)
 	{
 		double p1,p2,p3;
 		

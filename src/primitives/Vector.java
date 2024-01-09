@@ -16,7 +16,7 @@ public class Vector extends Point{
 		 }
 	 }
 	 
-	 Vector(Double3 dot) {
+	 public Vector(Double3 dot) {
 		 super(dot);
 		 try{
 			 if (this.equals(Double3.ZERO))
@@ -40,15 +40,15 @@ public class Vector extends Point{
 	return (obj instanceof Vector other && super.equals(other));
 	}
 	
-	double lengthSquared() {
+	public double lengthSquared() {
 		//TODO
 	}
 	
-	double length() {
+	public double length() {
 		
 	}
 	
-	Vector add(Vector vec) {
+	public Vector add(Vector vec) {
 		double p1,p2,p3;
 		
 		p1=this.xyz.d1+vec.xyz.d1;
@@ -57,7 +57,7 @@ public class Vector extends Point{
 		return new Vector(p1,p2,p3);
 	}
 	
-	Vector scale(double scalar) {
+	public Vector scale(double scalar) {
 		double p1,p2,p3;
 		
 		p1=this.xyz.d1*scalar;
@@ -66,15 +66,15 @@ public class Vector extends Point{
 		return new Vector(p1,p2,p3);
 	}
 	
-	Vector dotProduct(Vector vec) {
+	public Vector dotProduct(Vector vec) {
 		
 	}
 	
-	Vector crossProduct(Vector vec) {
+	public Vector crossProduct(Vector vec) {
 		
 	}
 	
-	Vector normalize() {
+	public Vector normalize() {
 		
 	}
 }
