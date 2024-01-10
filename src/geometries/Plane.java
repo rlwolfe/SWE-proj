@@ -28,8 +28,7 @@ public class Plane implements Geometry {
     	return normal;
     }
     
-    public // this should override the Geometry operation (DOESNT WORK IN ECLIPSE)
-    Vector getNormal(Point point) {
+    public Vector getNormal(Point point) {
     	return normal;
     }
 }
