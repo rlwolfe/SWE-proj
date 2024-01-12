@@ -1,14 +1,31 @@
 package primitives;
 
+/**
+ * constructors accept 3 doubles or a single Double3
+ * fields include: xyz (double)
+ * public methods consist of: add, distance, distanceSquared, and subtract
+ * Overridden methods are: toSring and equals
+ */
 public class Point {
 	 final protected Double3 xyz;
 	 
 	 public static final Point ZERO = new Point(0, 0, 0);
 	 
-	 public Point(double p1, double p2, double p3){
+	 /**
+	 * @param p1
+	 * @param p2
+	 * @param p3
+	 * constructor that receives 3 coordinates and assigns them to the object 
+	 */
+	public Point(double p1, double p2, double p3) {
 		 xyz = new Double3(p1, p2, p3);
 	 }
-	 protected Point(Double3 dot) {
+	
+	 /**
+	 * @param dot
+	 * constructor that receives coordinates in the form of a Double3 and assigns it to the object 
+	 */
+	protected Point(Double3 dot) {
 		 xyz = dot;		 
 	 }
 
@@ -23,13 +40,17 @@ public class Point {
 		Point other= (Point) obj;
 		return this.xyz.equals(other.xyz);
 	}
+	
 	@Override 
-	public String toString() 
-	{
+	public String toString() {
 		return xyz.toString();
 	}
-	public Point add(Vector vec)
-	{
+	
+	/**
+	 * @param vec
+	 * @return point with the coordinates from the given parameters
+	 */
+	public Point add(Vector vec) {
 		double p1,p2,p3;
 		
 		p1=this.xyz.d1+vec.xyz.d1;
@@ -38,20 +59,29 @@ public class Point {
 		return new Point(p1,p2,p3);
 	} 
 
-	public double distance (Point p)
-	{
+	/**
+	 * @param p
+	 * @return calculated distance between the object that called the function and the parameter
+	 */
+	public double distance (Point p) {
 		return Math.sqrt(distanceSquared(p));
 	}
 	
-	public double distanceSquared(Point p)
-	{
+	/**
+	 * @param p
+	 * @return calculated distance squared between the object that called the function and the parameter
+	 */
+	public double distanceSquared(Point p) {
 		return (((this.xyz.d1-p.xyz.d1)*(this.xyz.d1-p.xyz.d1))
 				+ ((this.xyz.d2+p.xyz.d2)*(this.xyz.d2+p.xyz.d2))
 				+ ((this.xyz.d3-p.xyz.d3)*(this.xyz.d3-p.xyz.d3)));
 	}
 	
-	public Vector subtract(Point p)
-	{
+	/**
+	 * @param p
+	 * @return vector subtracted by the coordinates from the given point
+	 */
+	public Vector subtract(Point p) {
 		double p1,p2,p3;
 		
 		p1=this.xyz.d1-p.xyz.d1;

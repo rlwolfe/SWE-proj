@@ -1,10 +1,18 @@
 package geometries;
-import primitives.Point;
-import primitives.Vector;
 
+/**
+ * this is an abstract class that inherits from Geometry
+ * the constructor accepts a double
+ * fields include: radius
+ * there are no methods
+ */
 public abstract class RadialGeometry implements Geometry{
-	
 	double radius;
+	
+	/**
+	 * @param radius
+	 * constructor that receives the radius and assigns it to the object
+	 */
 	public RadialGeometry(double radius) {
 	        this.radius = radius;
 	    }
