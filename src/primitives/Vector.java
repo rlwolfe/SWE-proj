@@ -69,11 +69,11 @@ public class Vector extends Point{
 	}
 	
 	public Vector dotProduct(Vector vec) {
-		double result=0.0;
-		result +=this.xyz.d1 * vec.xyz.d1;
-		result +=this.xyz.d2 * vec.xyz.d2;
-		result +=this.xyz.d3 * vec.xyz.d3;
-		return result;
+		double p1,p2,p3;
+		p1 = this.xyz.d1 * vec.xyz.d1;
+		p2 = this.xyz.d2 * vec.xyz.d2;
+		p3 = this.xyz.d3 * vec.xyz.d3;
+		return new Vector(p1,p2,p3);
 	}
 	
 	public Vector crossProduct(Vector vec) {
