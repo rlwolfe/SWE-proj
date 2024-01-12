@@ -41,11 +41,13 @@ public class Vector extends Point{
 	}
 	
 	public double lengthSquared() {
-		//TODO
+		double result=0.0;
+		result+=((this.xyz.d1*this.xyz.d1)+(this.xyz.d2 * this.xyz.d2)+(this.xyz.d3*this.xyz.d3));
+		return result;
 	}
 	
 	public double length() {
-		
+		return (Math.sqrt(lengthSquared()));
 	}
 	
 	public Vector add(Vector vec) {
@@ -67,14 +69,27 @@ public class Vector extends Point{
 	}
 	
 	public Vector dotProduct(Vector vec) {
-		
+		double result=0.0;
+		result +=this.xyz.d1 * vec.xyz.d1;
+		result +=this.xyz.d2 * vec.xyz.d2;
+		result +=this.xyz.d3 * vec.xyz.d3;
+		return result;
 	}
 	
 	public Vector crossProduct(Vector vec) {
-		
+		double x1, x2, x3;
+		x1=((this.xyz.d2 * vec.xyz.d3) - (this.xyz.d3 *vec.xyz.d2));
+		x2=((this.xyz.d3*vec.xyz.d1)- (this.xyz.d1*vec.xyz.d3));
+		x3=((this.xyz.d1*vec.xyz.d2) - (this.xyz.d2 *vec.xyz.d1));
+		return new Vector(x1,x2,x3);
 	}
 	
 	public Vector normalize() {
+		double normx=0.0, normy=0.0, normz=0.0;
+		normx=this.xyz.d1/length();
+		normy=this.xyz.d2/length();
+		normz=this.xyz.d3/length();
+		return new Vector(normx,normy,normz);
 		
 	}
 }
