@@ -1,5 +1,6 @@
 package geometries;
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
 
 /**
@@ -14,11 +15,12 @@ public class Cylinder extends Tube{
 	
 	/**
 	 * @param radius (double)
+	 * @param axis (ray)
 	 * @param height (double) 
 	 * constructor calls parents c-tor with received radius and sets the height 
 	 */
-	public Cylinder(double radius, double height) {
-		super(radius);
+	public Cylinder(double radius, Ray axis, double height) {
+		super(radius, axis);
 		this.height = height;
 	}	
 	
