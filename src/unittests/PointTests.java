@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import primitives.Point;
 /**
  * 
  */
@@ -17,11 +16,11 @@ class PointTests {
 	Vector vec;
 
 	/**
-	 * Test method for {@link primitives.Point#add(primitives.Vector)}.
+	 * Test methods for {@link primitives.Point#add(primitives.Vector)}.
 	 */
 	@Test
 	void testAddEq() {
-		//Equivalance: what it expects to see;
+		//Equivalence: what it expects to see;
 	
 		Point point1= new Point(1,2,3);
 		Vector vec1 = new Vector(5,6,7);
@@ -31,6 +30,8 @@ class PointTests {
 		//our assert checker is going to expected/actual
         assertEquals(test, result );	
 	}
+	
+	@Test
 	void testAddBoundedMax() {
 		Point p1= new Point(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
 		
@@ -39,6 +40,8 @@ class PointTests {
         Point test= new Point(Double.MAX_VALUE+Double.MAX_VALUE, Double.MAX_VALUE+Double.MAX_VALUE, Double.MAX_VALUE+Double.MAX_VALUE);
         assertEquals(test, result);
 	}
+
+	@Test
 	void testAddBoundedMIN() {
 		Point p1= new Point(Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE);
 		
@@ -47,8 +50,9 @@ class PointTests {
         Point test= new Point(Double.MIN_VALUE+Double.MIN_VALUE, Double.MIN_VALUE+Double.MIN_VALUE, Double.MIN_VALUE+Double.MIN_VALUE);
         assertEquals(test, result);	
 	}
+	
 	/**
-	 * Test method for {@link primitives.Point#distance(primitives.Point)}.
+	 * Test methods for {@link primitives.Point#distance(primitives.Point)}.
 	 */
 	@Test
 	void testDistance() {
@@ -56,7 +60,7 @@ class PointTests {
 	}
 
 	/**
-	 * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
+	 * Test methods for {@link primitives.Point#distanceSquared(primitives.Point)}.
 	 */
 	@Test
 	void testDistanceSquared() {

@@ -14,9 +14,9 @@ public class Sphere extends RadialGeometry{
 	 * @param radius
 	 * constructor accepts radius and sends it to the parent c-tor and center as null
 	 */
-	public Sphere(double radius) {
+	public Sphere(double radius, Point center) {
 		super(radius);
-		this.center = null;
+		this.center = center;
 	}
 	
 	/**

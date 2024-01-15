@@ -50,6 +50,7 @@ public class Vector extends Point{
 	{
 		 return "->" + super.toString(); 
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 	if (this == obj) 
@@ -61,9 +62,7 @@ public class Vector extends Point{
 	 * @return of double the length of the current vector squared
 	 */
 	public double lengthSquared() {
-		double result=0.0;
-		result+=((this.xyz.d1*this.xyz.d1)+(this.xyz.d2 * this.xyz.d2)+(this.xyz.d3*this.xyz.d3));
-		return result;
+		return ((this.xyz.d1*this.xyz.d1)+(this.xyz.d2 * this.xyz.d2)+(this.xyz.d3*this.xyz.d3));
 	}
 	
 	/**
