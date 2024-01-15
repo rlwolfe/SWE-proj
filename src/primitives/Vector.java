@@ -78,6 +78,7 @@ public class Vector extends Point{
 	 */
 	public Vector add(Vector vec) {
 		double p1,p2,p3;
+		//check parallel and throw if true
 		p1=this.xyz.d1+vec.xyz.d1;
 		p2=this.xyz.d2+vec.xyz.d2;
 		p3=this.xyz.d3+vec.xyz.d3;
