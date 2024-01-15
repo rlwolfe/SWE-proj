@@ -100,12 +100,11 @@ public class Vector extends Point{
 	 * @param vec
 	 * @return dot product of the current vector and the given one
 	 */
-	public Vector dotProduct(Vector vec) {
-		double p1,p2,p3;
-		p1 = this.xyz.d1 * vec.xyz.d1;
-		p2 = this.xyz.d2 * vec.xyz.d2;
-		p3 = this.xyz.d3 * vec.xyz.d3;
-		return new Vector(p1,p2,p3);
+	public double dotProduct(Vector vec) {
+		double answer;
+		answer = (this.xyz.d1 * vec.xyz.d1)+(this.xyz.d2 * vec.xyz.d2)+(this.xyz.d3 * vec.xyz.d3);
+		
+		return answer;
 	}
 	
 	/**
