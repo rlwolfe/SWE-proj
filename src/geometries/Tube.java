@@ -2,7 +2,7 @@ package geometries;
 import primitives.Ray;
 import primitives.Vector;
 import primitives.Point;
-
+//Bella & Rachel
 
 /**
  * this class inherits from RadialGeometry

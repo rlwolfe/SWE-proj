@@ -1,6 +1,7 @@
 package primitives;
 
 /**
+ * Bella & Rachel
  * constructors accept a point and a vector
  * fields include: head, direction
  * public methods consist of: equals

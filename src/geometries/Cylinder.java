@@ -4,6 +4,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
+ * Bella & Rachel
  * this class inherits from Tube
  * the constructor accepts two doubles
  * fields include: height and radius which was inherited 

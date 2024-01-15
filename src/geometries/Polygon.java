@@ -8,6 +8,7 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
+ * Bella & Rachel
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
  * system
  * @author Dan

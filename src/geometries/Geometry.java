@@ -4,6 +4,7 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
+ * Bella & Rachel
  * Geometry interface
  * no fields or overridden methods
  * public methods consist of: getNormal

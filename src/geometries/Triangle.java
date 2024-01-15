@@ -3,6 +3,7 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
+ * Bella & Rachel
  * constructors accepts three Points
  * currently doesn't have any of its own fields, inherits 3 doubles from Polygon
  * public methods consist of: getNormal

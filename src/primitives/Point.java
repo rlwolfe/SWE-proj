@@ -1,6 +1,7 @@
 package primitives;
 
 /**
+ * Bella & Rachel
  * constructors accept 3 doubles or a single Double3
  * fields include: xyz (double)
  * public methods consist of: add, distance, distanceSquared, and subtract

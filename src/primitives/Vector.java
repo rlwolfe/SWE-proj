@@ -1,6 +1,7 @@
 package primitives;
 
 /**
+ * Bella & Rachel
  * constructors accept two doubles or a single Double3
  * currently doesn't have any of its own fields, inherits 3 doubles from Point
  * public methods consist of: length, lengthSquared, add, scale, dotProduct, crossProduct and normalize
@@ -101,10 +102,7 @@ public class Vector extends Point{
 	 * @return dot product of the current vector and the given one
 	 */
 	public double dotProduct(Vector vec) {
-		double answer;
-		answer = (this.xyz.d1 * vec.xyz.d1)+(this.xyz.d2 * vec.xyz.d2)+(this.xyz.d3 * vec.xyz.d3);
-		
-		return answer;
+		return (this.xyz.d1 * vec.xyz.d1)+(this.xyz.d2 * vec.xyz.d2)+(this.xyz.d3 * vec.xyz.d3);
 	}
 	
 	/**

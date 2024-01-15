@@ -3,6 +3,7 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
+ * Bella & Rachel
  * this class inherits from Geometry
  * the constructor accepts 3 Points
  * fields include: point and normal
