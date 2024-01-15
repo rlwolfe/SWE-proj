@@ -76,6 +76,17 @@ class PointTests {
 		assertEquals(test, result);
 		
 	}
+	@Test
+	void testDistanceBoundedMin() {
+		Point point1 = new Point(Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE);
+		Point point2 = new Point(Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE);
+		double result = point1.distance(point2);
+		double test = Math.sqrt(Math.pow(Double.MIN_VALUE - Double.MIN_VALUE, 2) +
+				Math.pow(Double.MIN_VALUE - Double.MIN_VALUE, 2) +
+	            Math.pow(Double.MIN_VALUE - Double.MIN_VALUE, 2));
+		assertEquals(test, result);
+		
+	}
 	
 
 	/**

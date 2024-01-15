@@ -15,7 +15,7 @@ import primitives.Vector;
  * 
  */
 class VectorTests {
-	Vectpr v0		  = new Vector(0, 0, 0);
+	Vector v0		  = new Vector(0, 0, 0);
 	Vector v1         = new Vector(1, 2, 3);
 	Vector normV1	  = v1.normalize();
     Vector v1Opposite = new Vector(-1, -2, -3);
