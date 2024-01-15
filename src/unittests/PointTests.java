@@ -30,6 +30,21 @@ class PointTests {
 		//our assert checker is going to expected/actual
         assertEquals(test, result );	
 	}
+	@Test
+    void testAddZeroVector() {
+        Point point = new Point(1, 2, 3);
+        Vector zeroVector = new Vector(0, 0, 0);
+        Point result = point.add(zeroVector);
+        assertEquals(point, result);  // Adding a zero vector should not change the point
+    }
+	@Test
+    void testAddNegativeVector() {
+        Point point = new Point(1, 2, 3);
+        Vector negativeVector = new Vector(-2, -3, -4);
+        Point result = point.add(negativeVector);
+        Point test = new Point(-1, -1, -1);
+        assertEquals(test, result);  // Adding a negative vector subtracts the vector
+    }
 	
 	@Test
 	void testAddBoundedMax() {
@@ -64,6 +79,13 @@ class PointTests {
 
 		    assertEquals(test, result);
 		    }
+	@Test
+    void testDistanceZeroPoints() {
+        Point point1 = new Point(0, 0, 0);
+        Point point2 = new Point(0, 0, 0);
+        double result = point1.distance(point2);
+        assertEquals(0, result);  // Distance between identical points is zero
+    }
 		
 	@Test
 	void testDistanceBoundedMax() {
@@ -102,6 +124,13 @@ class PointTests {
 
 	    assertEquals(test, result);
 	}
+	@Test
+    void testDistanceSquaredZeroPoints() {
+        Point point1 = new Point(0, 0, 0);
+        Point point2 = new Point(0, 0, 0);
+        double result = point1.distanceSquared(point2);
+        assertEquals(0, result);  // Squared distance between identical points is zero
+    }
 	@Test
 	void testDistanceSquaredBoundedMax() {
 	    // Using extreme values
@@ -150,6 +179,35 @@ class PointTests {
 	    assertEquals(test, result);
 		
 	}
+	@Test
+    void testSubtractZeroVector() {
+        Point point = new Point(1, 2, 3);
+        Vector zeroVector = new Vector(0, 0, 0);
+        Point result = point.subtract(zeroVector);
+        assertEquals(point, result);  // Subtracting a zero vector should not change the point
+    }
+	@Test
+    void testSubtractEqualPoints() {
+        Point point1 = new Point(2, 4, 6);
+        Point point2 = new Point(2, 4, 6);
+        Vector result = point1.subtract(point2);
+        Vector test = new Vector(0, 0, 0);
+        assertEquals(test, result);  // Subtracting equal points results in a zero vector
+    }
+	@Test
+	void testSubtractNegativeVector() {
+	    // Equivalence: what it expects to see;
+	    Point point1 = new Point(5, 10, 15);
+	    Vector negativeVector = new Vector(-2, -4, -6);
+
+	    // Subtracting a negative vector from the point
+	    Point result = point1.subtract(negativeVector);
+	    Point test = new Point(7, 14, 21);
+
+	    // Assert the expected result
+	    assertEquals(test, result);
+	}
+
 	@Test
 	void testASubBoundedMax() {
 		Point p1= new Point(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
