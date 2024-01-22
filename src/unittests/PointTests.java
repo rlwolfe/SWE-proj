@@ -72,10 +72,11 @@ class PointTests {
 	@Test
 	void testDistanceEq() {
 		    Point point1 = new Point(1, 2, 3);
-		    Point point2 = new Point(4, 6, 8);
+		    Point point2 = new Point(4.0, 6.0, 8.0);
 
 		    double result = point1.distance(point2);
-		    double test = Math.sqrt(3 * 3 + 4 * 4 + 5 * 5);
+		    
+		    double test = Math.sqrt(((4-1) *(4-1) ) + ((6-2) * (6-2)) + ((8-3) * (8-3)));
 
 		    assertEquals(test, result);
 		    }
@@ -120,7 +121,7 @@ class PointTests {
 	    Point point2 = new Point(4, 6, 8);
 
 	    double result = point1.distanceSquared(point2);
-	    double test = 3 * 3 + 4 * 4 + 5 * 5;
+	    double test = (4-1) * (4-1) + (6-2) * (6-2) + (8-3) * (8-3);
 
 	    assertEquals(test, result);
 	}
