@@ -40,15 +40,18 @@ class PlaneTests {
         // this is to show that the point is in fact on the plane, if it retuns nulls then it means that
         // point is not on the plane of the crossprodcut calculation isnt correct.
         Vector normal = plane.getNormal(planePoint);
-        assertNotNull(normal, "getNormal() should not return null");
-        
-        
+        assertNotNull(normal, "getNormal() should not return null");  
     }
-	
-	
 	@Test
-	void testGetNormalPoint() {
-		
-	}
+    void testNormalizedVector() {
+        // Create a plane with three points
+        Plane plane = new Plane(new Point(0, 0, 0), new Point(1, 0, 0), new Point(0, 1, 0));
+
+        // Get the normal vector
+        Vector normal = plane.getNormal();
+
+        // Check that the length of the normal vector is approximately 1
+        assertEquals(1.0, normal.length(), 0.000001, "Plane's normal vector is not normalized");
+    }
 
 }

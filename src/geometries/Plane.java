@@ -52,9 +52,13 @@ public class Plane implements Geometry {
     
     /**
      * @return current normal of the object with given point
+     * 
      */
     public Vector getNormal(Point point) {
-    	return normal;
+    	Vector v1 = point.subtract(this.point);
+    	Vector normalAtPoint = v1.crossProduct(normal);
+    	// Normalize the result
+        return normalAtPoint.normalize();
     }
 }
    
