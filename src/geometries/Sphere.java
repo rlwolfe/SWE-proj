@@ -14,7 +14,7 @@ public class Sphere extends RadialGeometry{
 	 * @param radius
 	 * constructor accepts radius and sends it to the parent c-tor and center as null
 	 */
-	public Sphere(double radius, Point center) {
+	public Sphere(Point center, double radius) {
 		super(radius);
 		this.center = center;
 	}
@@ -24,7 +24,9 @@ public class Sphere extends RadialGeometry{
 	 * @return null for now
 	 */
 	public Vector getNormal(Point p) {
-		return null;
+		Vector normal = p.subtract(center);
+        // Normalize the vector to get a unit vector
+        return normal.normalize();
 	}
 	
 
