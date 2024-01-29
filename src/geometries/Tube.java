@@ -29,8 +29,18 @@ public class Tube extends RadialGeometry {
 	 * return null for now
 	 */
 	public Vector getNormal(Point p)
-	{
-		return null;
+	{// Calculate the vector from the center axis to the specified point
+	    Vector axisToPoint = p.subtract(axis.head);
+	    // Project the vector onto the direction of the center axis
+	    double projectionScalar = axisToPoint.dotProduct(axis.direction);
+	    Vector projection = axis.direction.scale(projectionScalar);
+	    // Subtract the projected vector from the original vector to get the normal
+	    Vector normal = axisToPoint.subtract(projection).normalize();
+
+	    // Check if the normal is the zero vector (which occurs at the center)
+	    // If it is, return the direction opposite to the axisRay as the normal
+	    return normal.equals(Vector.ZERO) ? axis.direction.scale(-1).normalize() : normal;
 	}
+	
 
 }
