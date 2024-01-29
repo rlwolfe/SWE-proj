@@ -16,6 +16,9 @@ class CylinderTests {
 
     // ============ Equivalence Partitions Tests ==============
 
+	/**
+	 * Test method for {@link geometries.Cylinder#getNormal(primitives.Point)}.
+	 */
     @Test
     void testGetNormal() {
         //  Test getNormal for a point on surface of the cylinder
@@ -36,12 +39,9 @@ class CylinderTests {
 
         // TC03: Test getNormal for a point on the base
         // Add more specific tests here...
-    }
 
     // =============== Boundary Values Tests ==================
 
-    @Test
-    void testGetNormalBoundary() {
         // TC11: Test getNormal for a point at the center of the base
         // Add more boundary tests here...
 

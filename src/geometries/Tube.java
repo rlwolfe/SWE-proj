@@ -26,10 +26,10 @@ public class Tube extends RadialGeometry {
 	
 	/**
 	 * @param p (Point)
-	 * return null for now
+	 * @return normal from axis
 	 */
-	public Vector getNormal(Point p)
-	{// Calculate the vector from the center axis to the specified point
+	public Vector getNormal(Point p) {
+		// Calculate the vector from the center axis to the specified point
 	    Vector axisToPoint = p.subtract(axis.head);
 	    // Project the vector onto the direction of the center axis
 	    double projectionScalar = axisToPoint.dotProduct(axis.direction);

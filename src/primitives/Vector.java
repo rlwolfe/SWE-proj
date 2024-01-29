@@ -36,7 +36,7 @@ public class Vector extends Point{
 	public Vector(Double3 dot) {
 		 super(dot);
 		 try{
-			 if (this.equals(Double3.ZERO))
+			 if (this.equals(new Vector(Double3.ZERO)))
 				 throw new IllegalArgumentException("Vector cannot be zero");
 		 }
 		 catch (IllegalArgumentException e)
@@ -62,7 +62,7 @@ public class Vector extends Point{
 	 * @return of double the length of the current vector squared
 	 */
 	public double lengthSquared() {
-		return ((this.xyz.d1*this.xyz.d1)+(this.xyz.d2 * this.xyz.d2)+(this.xyz.d3*this.xyz.d3));
+		return ((this.xyz.d1*this.xyz.d1)+(this.xyz.d2*this.xyz.d2)+(this.xyz.d3*this.xyz.d3));
 	}
 	
 	/**
@@ -111,9 +111,9 @@ public class Vector extends Point{
 	 */
 	public Vector crossProduct(Vector vec) {
 		double x1, x2, x3;
-		x1=((this.xyz.d2 * vec.xyz.d3) - (this.xyz.d3 *vec.xyz.d2));
-		x2=((this.xyz.d3*vec.xyz.d1)- (this.xyz.d1*vec.xyz.d3));
-		x3=((this.xyz.d1*vec.xyz.d2) - (this.xyz.d2 *vec.xyz.d1));
+		x1=((this.xyz.d2*vec.xyz.d3) - (this.xyz.d3*vec.xyz.d2));
+		x2=((this.xyz.d3*vec.xyz.d1) - (this.xyz.d1*vec.xyz.d3));
+		x3=((this.xyz.d1*vec.xyz.d2) - (this.xyz.d2*vec.xyz.d1));
 		return new Vector(x1,x2,x3);
 	}
 	

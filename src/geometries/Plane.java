@@ -25,10 +25,9 @@ public class Plane implements Geometry {
     	Vector side1 = p2.subtract(p1);
         Vector side2 = p3.subtract(p1);
         this.normal = side1.crossProduct(side2);
-     // Note: At this stage, save a null value in the normal field, as the full implementation
+        // Note: At this stage, save a null value in the normal field, as the full implementation
         // of normal calculation will be done in the next stage.
         // For now, you are just approximating the normal vector based on the cross product.
-    
     }
     
     /**
@@ -39,20 +38,19 @@ public class Plane implements Geometry {
     public Plane(Point point, Vector normal) {
         this.point = point;
         this.normal = normal.normalize();
-        
+        //should check validity
     }
     
     /**
      * @return current normal of the object
      */
-    public Vector getNormal() 
-    {
+    public Vector getNormal() {
     	return normal.normalize();
     }
     
     /**
-     * @return current normal of the object with given point
-     * 
+	 * @param point (Point)
+     * @return normal of the object with given point
      */
     public Vector getNormal(Point point) {
     	Vector v1 = point.subtract(this.point);

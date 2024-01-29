@@ -27,11 +27,9 @@ public class Triangle extends Polygon{
 	 * @return the parent normal
 	 */
 	@Override
-	public Vector getNormal(Point p) {
-		Vector norm;
-		
-		return  norm=super.plane.getNormal();
-		// this is where I get an error or failure when running the test. that the triangle is not orthognol 
+	public Vector getNormal(Point p) {		
+		return  super.plane.getNormal();
+		// this is where I get an error or failure when running the test. that the triangle is not orthogonal 
 		
 	}
 }

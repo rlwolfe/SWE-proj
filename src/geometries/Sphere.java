@@ -11,6 +11,7 @@ import primitives.Vector;
 public class Sphere extends RadialGeometry{
 	private final Point center;
 	/**
+	 * @param center
 	 * @param radius
 	 * constructor accepts radius and sends it to the parent c-tor and center as null
 	 */
@@ -21,7 +22,7 @@ public class Sphere extends RadialGeometry{
 	
 	/**
 	 * @param p (Point)
-	 * @return null for now
+	 * @return normal from center of sphere
 	 */
 	public Vector getNormal(Point p) {
 		Vector normal = p.subtract(center);

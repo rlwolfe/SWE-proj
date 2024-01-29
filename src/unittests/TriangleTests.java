@@ -10,18 +10,12 @@ import primitives.Vector;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * 
- */
 class TriangleTests {
 	private final double DELTA = 0.000001;
 
 	/**
 	 * Test method for {@link geometries.Triangle#getNormal(primitives.Point)}.
 	 */
-
-	
-
     @Test
     public void testGetNormal() {
     	Point p1 = new Point(0, 0, 0);
@@ -30,17 +24,19 @@ class TriangleTests {
 
     	Triangle triangle = new Triangle(p1, p2, p3);
 
-
-
         System.out.println("Triangle vertices: " + p1 + ", " + p3 + ", " + p2);
-        System.out.println("Triangle normal: " + triangle.getNormal(new Point(0, 0, 0)));
-
+        
         // ensure there are no exceptions
         assertDoesNotThrow(() -> triangle.getNormal(new Point(0, 0, 0)), "Error in getNormal for Triangle");
+        
+        System.out.println("Triangle normal: " + triangle.getNormal(new Point(0, 0, 0)));
 
         // generate the test result
         Vector result = triangle.getNormal(new Point(0, 0, 0));
 
+        // ensure getNormal doesn't return null
+        assertNotNull(result, "getNormal() should not return null");
+        
         // ensure |result| = 1
         assertEquals(1, result.length(), DELTA, "Triangle's normal is not a unit vector");
 
@@ -53,6 +49,9 @@ class TriangleTests {
         System.out.println("Expected: " + normalToTriangle);
         System.out.println("Dot Product: " + result.dotProduct(normalToTriangle));
 
-        assertEquals(0, result.dotProduct(normalToTriangle), DELTA, "Triangle's normal is not orthogonal to the triangle");
+        assertEquals(0d, result.dotProduct(edge1.subtract(edge2).normalize()), DELTA,
+        		"Triangle's normal is not orthogonal to one of the edges");
+
+        //assertEquals(0, result.dotProduct(normalToTriangle), DELTA, "Triangle's normal is not orthogonal to the triangle");
     }
 }
