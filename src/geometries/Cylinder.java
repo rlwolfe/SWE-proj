@@ -12,7 +12,7 @@ import primitives.Vector;
  * no overridden methods
  */
 public class Cylinder extends Tube{
-	private double height;
+	//private double height;
 	
 	/**
 	 * @param radius (double)
@@ -22,7 +22,7 @@ public class Cylinder extends Tube{
 	 */
 	public Cylinder(double radius, Ray axis, double height) {
 		super(radius, axis);
-		this.height = height;
+		//this.height = height;
 	}	
 	
 	/**

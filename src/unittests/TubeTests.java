@@ -18,18 +18,18 @@ class TubeTests {
 	 */
 	@Test
 	void testGetNormal() {
-		//equivalence test
-		Point point = new Point(5, 5, 5);
-		Vector vector = new Vector(1, 1, 1);
-		Ray ray = new Ray(point, vector);
-		Tube tube = new Tube(2, ray);
-		Vector test = new Vector(-10, -10, -10);
+		Vector vector = new Vector(1, 0, 0);
+		Ray ray = new Ray(Point.ZERO, vector);
+		Tube tube = new Tube(5, ray);
+		Point point1 = new Point(5, 5, 0);
+		Point point2 = new Point(0, 5, 0);
+		Vector test = new Vector(0, 1, 0);
 		
-		assertEquals(test, tube.getNormal(point), "ERROR: get normal of tube has an issue");
+		//equivalence test
+		assertEquals(test, tube.getNormal(point1), "ERROR: get normal of tube has an issue");
 		
 		//boundary tests
-		//when the connection between the point on the body and the ray’s head creates a 90 degree angle with the ray
-		
+		assertEquals(test, tube.getNormal(point2), "ERROR: get normal of tube has an issue with orthogonal point");
+		//when the connection between the point on the body and the ray’s head creates a 90 degree angle with the ray	
 	}
-
 }
