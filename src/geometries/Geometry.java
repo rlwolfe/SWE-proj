@@ -9,7 +9,7 @@ import primitives.Vector;
  * no fields or overridden methods
  * public methods consist of: getNormal
  */
-public interface Geometry {
+public interface Geometry extends Intersectable {
 
 	/**
 	 * @param point

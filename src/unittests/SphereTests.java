@@ -28,6 +28,10 @@ class SphereTests {
 	        Vector expected = new Vector(1, 0, 0);
 	        assertEquals(expected, result, "Failed for a point on the surface");
 	    }
+	@Test 
+	void testFindIntersectionPoints() {
+		//implement
+	}
 	
 
 }

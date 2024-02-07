@@ -51,5 +51,10 @@ class CylinderTests {
         // TC13: Test getNormal for a point on the side of the cylinder
         // Add more boundary tests here...
     }
+    @Test 
+	void testFindIntersectionPoints() {
+    	//implement
+    	//bonus
+    }
 }
 

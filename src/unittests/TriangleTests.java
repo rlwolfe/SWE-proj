@@ -54,4 +54,9 @@ class TriangleTests {
 
         //assertEquals(0, result.dotProduct(normalToTriangle), DELTA, "Triangle's normal is not orthogonal to the triangle");
     }
+    @Test 
+	void testFindIntersectionPoints() {
+    	//implement
+    	//bonus
+    }
 }

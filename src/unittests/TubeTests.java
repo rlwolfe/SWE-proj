@@ -32,4 +32,9 @@ class TubeTests {
 		assertEquals(test, tube.getNormal(point2), "ERROR: get normal of tube has an issue with orthogonal point");
 		//when the connection between the point on the body and the ray’s head creates a 90 degree angle with the ray	
 	}
+	@Test 
+	void testFindIntersectionPoints() {
+		//implement
+		//bonus
+	}
 }

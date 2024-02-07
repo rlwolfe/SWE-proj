@@ -62,5 +62,9 @@ class PlaneTests {
 		// Check that the length of the normal vector is approximately 1
 		assertEquals(1.0, normal.length(), 0.000001, "Plane's normal vector is not normalized");
 	}
+	@Test 
+	void testFindIntersectionPoints(){
+		//implement
+	}
 
 }
