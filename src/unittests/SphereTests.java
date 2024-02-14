@@ -5,6 +5,7 @@ package unittests;
 import geometries.Sphere;
 import primitives.Point;
 import primitives.Vector;
+import primitives.Ray;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,9 +29,27 @@ class SphereTests {
 	        Vector expected = new Vector(1, 0, 0);
 	        assertEquals(expected, result, "Failed for a point on the surface");
 	    }
-	@Test 
+	@Test
 	void testFindIntersectionPoints() {
-		//implement
+	    // Create a sphere with a center at the origin and radius 1
+	    Sphere sphere = new Sphere(new Point(0, 0, 0), 1);
+	    
+	    // Test case 1: Ray does not intersect the sphere and originates outside the sphere (entirely outside)
+	    Ray ray1 = new Ray(new Point(2, 0, 0), new Vector(1, 0, 0));
+	    assertNull(sphere.findIntersections(ray1), "Failed for a ray entirely outside the sphere");
+
+	    // Test case 2: Ray that intersects sphere with the origin outside (before) sphere surface
+	    Ray ray2 = new Ray(new Point(-2, 0, 0), new Vector(1, 0, 0));
+	    assertNotNull(sphere.findIntersections(ray2), "Failed for a ray originating before the sphere surface");
+
+	    // Test case 3: Ray intersects sphere with the origin inside the sphere
+	    Ray ray3 = new Ray(new Point(0.5, 0, 0), new Vector(1, 0, 0));
+	    assertNotNull(sphere.findIntersections(ray3), "Failed for a ray originating inside the sphere");
+
+	    // Test case 4: Ray intersects sphere and the origin is after sphere surface
+	    Ray ray4 = new Ray(new Point(2, 0, 0), new Vector(-1, 0, 0));
+	    assertNotNull(sphere.findIntersections(ray4), "Failed for a ray originating after the sphere surface");
+	    
 	}
 	
 
