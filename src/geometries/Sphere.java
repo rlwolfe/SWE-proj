@@ -56,7 +56,7 @@ public class Sphere extends RadialGeometry{
         // If the distance between the closest approach point and the sphere's center
         // is greater than the radius of the sphere, there is no intersection
         if (dSquared > radiusSquared)
-            return intersections;
+            return null;
 
         // Calculate the half chord length between the closest approach point and the intersection points
         double halfChordLength = Math.sqrt(radiusSquared - dSquared);
@@ -75,11 +75,10 @@ public class Sphere extends RadialGeometry{
             intersections.add(intersection2);
         }
 
-        // If no intersections were found, return an empty list
         if (intersections.isEmpty()) {
             return null;
         }
+
         return intersections;
-        
     }
 }
