@@ -1,5 +1,9 @@
 package geometries;
+import java.util.ArrayList;
+import java.util.List;
+
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
 
 /**
@@ -57,6 +61,36 @@ public class Plane implements Geometry {
     	Vector normalAtPoint = v1.crossProduct(normal);
     	// Normalize the result
         return normalAtPoint.normalize();
+    }
+    /**
+     * Finds the intersection points between a ray and this plane.
+     * @param ray The ray to intersect with the plane
+     * @return A list of intersection points (can be empty if there are no intersections)
+     */
+    public List<Point> findIntersections(Ray ray) {
+        List<Point> intersections = new ArrayList<>();
+
+        // Calculate the dot product between the ray's direction and the plane's normal
+        double denom = ray.direction.dotProduct(normal);
+
+        // If the dot product is zero, the ray is parallel to the plane
+        if (denom == 0) {
+            // Ray is parallel to the plane, no intersection
+            return null;
+        }
+
+        // Calculate the distance from the ray's origin to the plane
+        Vector p0l0 = point.subtract(ray.head);
+        double t = p0l0.dotProduct(normal) / denom;
+
+        // Ensure the intersection point is in front of the ray's head (t > 0)
+        if (t > 0) {
+            // Calculate the intersection point and add it to the list
+            Point intersection = ray.head.add(ray.direction.scale(t));
+            intersections.add(intersection);
+        }
+
+        return null;
     }
 }
    
