@@ -30,6 +30,7 @@ public class Point {
 		 xyz = dot;		 
 	 }
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -41,7 +42,11 @@ public class Point {
 		Point other= (Point) obj;
 		return this.xyz.equals(other.xyz);
 	}
-	
+	//new method to get xyz
+	public Double3 getXyz() {
+		return xyz;
+	}
+
 	@Override 
 	public String toString() {
 		return xyz.toString();

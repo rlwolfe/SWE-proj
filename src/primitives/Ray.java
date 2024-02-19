@@ -37,4 +37,14 @@ public class Ray {
 		return "head=" + head + ", direction=" + direction;
 	}
 	
+	/**
+	 * @param t (double) 
+	 * @return point on the ray that passes through given double ((The method calculates a point on the beam line, at a given distance from the beam’s head))
+	 */
+	public Point getPoint(double t) { //refactoring new code for ray and points on the ray
+		if(t==0)
+			return head;
+		return head.add(direction.scale(t));
+		}
+	
 }
