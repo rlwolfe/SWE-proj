@@ -5,6 +5,7 @@ import java.util.List;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.*;
 
 /**
  * Bella & Rachel
@@ -29,8 +30,6 @@ public class Plane implements Geometry {
     	Vector side1 = p2.subtract(p1);
         Vector side2 = p3.subtract(p1);
         this.normal = side1.crossProduct(side2);
-        // Note: At this stage, save a null value in the normal field, as the full implementation
-        // of normal calculation will be done in the next stage.
         // For now, you are just approximating the normal vector based on the cross product.
     }
     
@@ -63,10 +62,11 @@ public class Plane implements Geometry {
         return normalAtPoint.normalize();
     }
     /**
-     * Finds the intersection points between a ray and this plane.
-     * @param ray The ray to intersect with the plane
+     * Finds the intersection points between a ray and this plane
+     * @param ray (Ray) ray intersecting with the plane
      * @return A list of intersection points (can be empty if there are no intersections)
      */
+	@Override
     public List<Point> findIntersections(Ray ray) {
         List<Point> intersections = new ArrayList<>();
 
@@ -74,14 +74,14 @@ public class Plane implements Geometry {
         double denom = ray.direction.dotProduct(normal);
 
         // If the dot product is zero, the ray is parallel to the plane
-        if (denom == 0) {
+        if (isZero(denom)) {
             // Ray is parallel to the plane, no intersection
             return null;
         }
 
         // Calculate the distance from the ray's origin to the plane
         Vector p0l0 = point.subtract(ray.head);
-        double t = p0l0.dotProduct(normal) / denom;
+        double t = p0l0.dotProduct(normal) / denom; // ?alignZero(nQMinusP0 / nv);
 
         // Ensure the intersection point is in front of the ray's head (t > 0)
         if (t > 0) {
@@ -89,7 +89,6 @@ public class Plane implements Geometry {
             Point intersection = ray.head.add(ray.direction.scale(t));
             intersections.add(intersection);
         }
-
         return null;
     }
 }

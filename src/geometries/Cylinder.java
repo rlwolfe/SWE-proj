@@ -26,12 +26,14 @@ public class Cylinder extends Tube{
 	}	
 	
 	/**
+	 * return null for now
+	 */
+	public Vector getNormal() { return null; }
+	
+	/**
 	 * @param p (Point)
 	 * return null for now
 	 */
-	public Vector getNormal(Point p)
-	{
-		return null;
-	}
+	public Vector getNormal(Point p) { return null; }
 
 }

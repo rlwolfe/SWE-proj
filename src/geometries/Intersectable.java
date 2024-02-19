@@ -5,9 +5,19 @@ import primitives.Point;
 import primitives.Vector;
 import primitives.Ray;
 
+/**
+ * Bella & Rachel
+ * Intersectable interface
+ * no fields
+ * public methods consist of: findIntersections
+ */
 public interface Intersectable {
 	
-	public List<Point> findIntsersections(Ray ray);
+	/**
+	 * @param ray
+	 * @return nothing because this is part of an interface 
+	 */
+	public List<Point> findIntersections(Ray ray);
 	
 
 }

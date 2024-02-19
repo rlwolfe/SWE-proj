@@ -33,7 +33,12 @@ public class Sphere extends RadialGeometry{
         // Normalize the vector to get a unit vector
         return normal.normalize();
 	}
-
+	/**
+     * Finds the intersection points between a ray and the sphere
+     * @param ray (Ray) - ray intersecting with the sphere
+     * @return A list of intersection points (can be empty if there are no intersections)
+     */
+	@Override
 	public List<Point> findIntersections(Ray ray) {
         List<Point> intersections = new ArrayList<>();
 
