@@ -49,6 +49,7 @@ class SphereTests {
 		final Vector v310 = new Vector(3, 1, 0);
 		final Vector v110 = new Vector(1, 1, 0);
 		final Point p01 = new Point(-1, 0, 0);
+		
 		// ============ Equivalence Partitions Tests ==============
 		// TC01: Ray's line is outside the sphere (0 points)
 		assertNull(sphere.findIntersections(new Ray(p01, v110)), "Ray's line out of sphere");

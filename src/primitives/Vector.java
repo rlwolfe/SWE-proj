@@ -34,16 +34,14 @@ public class Vector extends Point{
 	 * constructor that receives 3 coordinates in the form of type Double3 and assigns them to the object
 	 */
 	public Vector(Double3 dot) {
-		 super(dot);
-		 try{
-			 if (this.equals(new Vector(Double3.ZERO)))
-				 throw new IllegalArgumentException("Vector cannot be zero");
-		 }
-		 catch (IllegalArgumentException e)
-		 {
-			 System.out.println("Illegal Argument Exception thrown, " + e);
-		 }
-	 }
+	    super(dot);
+	    try {
+	        if (dot.equals(Double3.ZERO))
+	            throw new IllegalArgumentException("Vector cannot be zero");
+	    } catch (IllegalArgumentException e) {
+	        System.out.println("Illegal Argument Exception thrown, " + e);
+	    }
+	}
 	
 	@Override 
 	public String toString()

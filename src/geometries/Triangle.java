@@ -48,27 +48,30 @@ public class Triangle extends Polygon{
 	 */
 	@Override
 	public List<Point> findIntersections(Ray ray) {
-		List<Point> intersections = new ArrayList<>();
+	    List<Point> intersections = new ArrayList<>();
 
-		// Calculate the dot product between the ray's direction and the triangle's normal
-		double denom = ray.direction.dotProduct(normal);
+	    // Calculate the dot product between the ray's direction and the triangle's normal
+	    double denom = ray.direction.dotProduct(normal);
 
-		// If the dot product is zero, the ray is parallel to the plane
-		if (isZero(denom)) {
-			// Ray is parallel to the plane, no intersection
-			return null;
-		}
+	    // If the dot product is zero, the ray is parallel to the plane
+	    if (isZero(denom)) {
+	        // Ray is parallel to the plane, no intersection
+	        return intersections; // Return an empty list
+	    }
 
-		// Calculate the distance from the ray's origin to the triangle
-		Vector p0l0 = this.P1.subtract(ray.head);
-		double t = p0l0.dotProduct(normal) / denom; // ?alignZero(nQMinusP0 / nv);
+	    // Calculate the distance from the ray's origin to the triangle
+	    Vector p0l0 = vertices.get(0).subtract(ray.head);
+	    double t = p0l0.dotProduct(normal) / denom;
 
-		// Ensure the intersection point is in front of the ray's head (t > 0)
-		if (t > 0) {
-			// Calculate the intersection point and add it to the list
-			Point intersection = ray.head.add(ray.direction.scale(t));
-			intersections.add(intersection);
-		}
-		return null;
+	    // Ensure the intersection point is in front of the ray's head (t > 0)
+	    if (t > 0) {
+	        // Calculate the intersection point
+	        Point intersection = ray.getPoint(t);
+
+	        // Add the intersection point to the list
+	        intersections.add(intersection);
+	    }
+
+	    return intersections.isEmpty() ? null : intersections;
 	}
 }

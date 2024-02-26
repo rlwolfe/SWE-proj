@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import java.util.LinkedList;
 
 class PlaneTests {
 
@@ -69,25 +70,29 @@ class PlaneTests {
 	
 	@Test
 	void testRayIntersectsPlane() {
-		// Create a plane and a ray that intersects the plane
-		Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
-		Ray ray = new Ray(new Point(0, 0, -1), new Vector(0, 0, 1));
+	    // Create a plane and a ray that intersects the plane
+	    Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
+	    Ray ray = new Ray(new Point(0, 0, -1), new Vector(0, 0, 1));
 
-		// Test case: Ray intersects the plane
-		List<Point> intersections = plane.findIntersections(ray);
-		assertNotNull(intersections, "Ray intersects the plane");
-		assertEquals(1, intersections.size(), "Incorrect number of intersection points");
+	    // Test case: Ray intersects the plane
+	    List<Point> intersections = plane.findIntersections(ray);
+	    assertNotNull(intersections, "Ray intersects the plane");
+	    assertEquals(1, intersections.size(), "Incorrect number of intersection points");
+	    assertEquals(new Point(0, 0, 0), intersections.get(0), "Incorrect intersection point");
 	}
 	@Test
 	void testRayDoesNotIntersectPlane() {
-		// Create a plane and a ray that does not intersect the plane
-		Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
-		Ray ray = new Ray(new Point(1, 1, -1), new Vector(0, 0, 1));
+	    // Create a plane and a ray that does not intersect the plane
+	    Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
+	    Ray ray = new Ray(new Point(1, 1, -1), new Vector(0, 0, -1));
 
-		// Test case: Ray does not intersect the plane
-		List<Point> intersections = plane.findIntersections(ray);
-		assertNull(intersections, "Ray does not intersect the plane");
+	    // Test case: Ray does not intersect the plane
+	    List<Point> intersections = plane.findIntersections(ray);
+	    assertNotNull(intersections, "Intersection list should not be null");
+	    assertEquals(0, intersections.size(), "Ray does not intersect the plane, should have no intersections");
 	}
+
+
 	@Test
 	void testParallelRay() {
 		// Create a plane and a parallel ray
@@ -122,44 +127,51 @@ class PlaneTests {
 	}
 	@Test
 	void testRayOrthogonalAfterPlane() {
-		// Create a plane and a ray orthogonal to the plane after it
-		Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
-		Ray orthogonalRay = new Ray(new Point(0, 0, 1), new Vector(0, 0, 1));
+	    // Create a plane and a ray orthogonal to the plane after it
+	    Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
+	    Ray orthogonalRay = new Ray(new Point(0, 0, 1), new Vector(0, 0, 1));
 
-		// Test case: Ray is orthogonal to the plane and after it
-		List<Point> intersections = plane.findIntersections(orthogonalRay);
-		assertNull(intersections, "Ray is orthogonal to the plane and after it");
+	    // Test case: Ray is orthogonal to the plane and after it
+	    List<Point> intersections = plane.findIntersections(orthogonalRay);
+	    assertNotNull(intersections, "Intersection list should not be null");
+	    assertEquals(0, intersections.size(), "Ray is orthogonal to the plane and after it, should have no intersections");
 	}
+
 	@Test
 	void testRayNotOrthogonalNotParallelBeforePlane() {
-		// Create a plane and a ray neither orthogonal nor parallel to the plane before it
-		Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
-		Ray ray = new Ray(new Point(0, 0, -1), new Vector(1, 1, 1));
+	    // Create a plane and a ray neither orthogonal nor parallel to the plane before it
+	    Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
+	    Ray ray = new Ray(new Point(0, 0, -1), new Vector(1, 1, -1));
 
-		// Test case: Ray is neither orthogonal nor parallel to the plane and before it
-		List<Point> intersections = plane.findIntersections(ray);
-		assertNull(intersections, "Ray is neither orthogonal nor parallel to the plane and before it");
+	    // Test case: Ray is neither orthogonal nor parallel to the plane and before it
+	    List<Point> intersections = plane.findIntersections(ray);
+	    assertNotNull(intersections, "Ray is neither orthogonal nor parallel to the plane and before it");
+	    assertTrue(intersections.isEmpty(), "Ray is neither orthogonal nor parallel to the plane and before it");
 	}
+
 	@Test
 	void testRayNotOrthogonalNotParallelInPlaneOnRefPoint() {
-		// Create a plane and a ray neither orthogonal nor parallel to the plane, starts at a reference point in the plane
-		Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
-		Ray ray = new Ray(new Point(0, 0, 0), new Vector(1, 1, 1));
+	    // Create a plane and a ray neither orthogonal nor parallel to the plane, starts at a reference point in the plane
+	    Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
+	    Ray ray = new Ray(new Point(0, 0, 0), new Vector(1, 1, 1));
 
-		// Test case: Ray is neither orthogonal nor parallel to the plane and starts at a reference point in the plane
-		List<Point> intersections = plane.findIntersections(ray);
-		assertNull(intersections, "Ray is neither orthogonal nor parallel to the plane and starts at a reference point in the plane");
+	    // Test case: Ray is neither orthogonal nor parallel to the plane and starts at a reference point in the plane
+	    List<Point> intersections = plane.findIntersections(ray);
+	    assertEquals(0, intersections.size(), "Ray is neither orthogonal nor parallel to the plane and starts at a reference point in the plane");
 	}
+
 	@Test
 	void testRayNotOrthogonalNotParallelInPlaneNotOnRefPoint() {
-		// Create a plane and a ray neither orthogonal nor parallel to the plane, starts in the plane but not at a reference point
-		Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
-		Ray ray = new Ray(new Point(1, 1, 0), new Vector(1, 1, 1));
+	    // Create a plane and a ray neither orthogonal nor parallel to the plane, starts in the plane but not at a reference point
+	    Plane plane = new Plane(new Point(0, 0, 0), new Vector(0, 0, 1));
+	    Ray ray = new Ray(new Point(1, 1, 0), new Vector(1, 1, 1));
 
-		// Test case: Ray is neither orthogonal nor parallel to the plane and starts in the plane but not at a reference point
-		List<Point> intersections = plane.findIntersections(ray);
-		assertNull(intersections, "Ray is neither orthogonal nor parallel to the plane and starts in the plane but not at a reference point");
+	    // Test case: Ray is neither orthogonal nor parallel to the plane and starts in the plane but not at a reference point
+	    List<Point> intersections = plane.findIntersections(ray);
+	    assertNotNull(intersections, "Intersection list should not be null");
+	    assertEquals(0, intersections.size(), "Ray is neither orthogonal nor parallel to the plane and starts in the plane but not at a reference point, should have no intersections");
 	}
+
 }
 
 

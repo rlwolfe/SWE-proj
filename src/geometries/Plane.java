@@ -1,5 +1,6 @@
 package geometries;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import primitives.Point;
@@ -26,12 +27,19 @@ public class Plane implements Geometry {
      * constructor that receives 3 coordinates, calculates and assigns them to the object
      */
     public Plane(Point p1, Point p2, Point p3){
+    	if(p1==p2 || p1==p3 || p2==p3)
+    		throw new IllegalArgumentException("two points are equal");
+    	else {
+    		
     	this.point = p1;
     	Vector side1 = p2.subtract(p1);
         Vector side2 = p3.subtract(p1);
         this.normal = side1.crossProduct(side2);
         // For now, you are just approximating the normal vector based on the cross product.
+        }
     }
+    
+    
     
     /**
      * @param point
@@ -66,9 +74,9 @@ public class Plane implements Geometry {
      * @param ray (Ray) ray intersecting with the plane
      * @return A list of intersection points (can be empty if there are no intersections)
      */
-	@Override
+    @Override
     public List<Point> findIntersections(Ray ray) {
-        List<Point> intersections = new ArrayList<>();
+        List<Point> intersections = new LinkedList<>(); // Use List interface
 
         // Calculate the dot product between the ray's direction and the plane's normal
         double denom = ray.direction.dotProduct(normal);
@@ -76,20 +84,22 @@ public class Plane implements Geometry {
         // If the dot product is zero, the ray is parallel to the plane
         if (isZero(denom)) {
             // Ray is parallel to the plane, no intersection
-            return null;
+            return null; // Return empty list instead of null
         }
 
         // Calculate the distance from the ray's origin to the plane
         Vector p0l0 = point.subtract(ray.head);
-        double t = p0l0.dotProduct(normal) / denom; // ?alignZero(nQMinusP0 / nv);
+        double t = p0l0.dotProduct(normal) / denom; 
 
         // Ensure the intersection point is in front of the ray's head (t > 0)
         if (t > 0) {
             // Calculate the intersection point and add it to the list
-            Point intersection = ray.head.add(ray.direction.scale(t));
+            Point intersection = ray.getPoint(t);
             intersections.add(intersection);
         }
-        return null;
+
+        return intersections; // Return list of intersection points
     }
+
 }
    
