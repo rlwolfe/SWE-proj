@@ -30,18 +30,19 @@ public class Point {
 		 xyz = dot;		 
 	 }
 
-
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if(obj==null)
-			return false;
-		if (!(obj instanceof Point))
-			return false;
-		Point other= (Point) obj;
-		return this.xyz.equals(other.xyz);
+	    if (this == obj)
+	        return true;
+	    if (obj == null)
+	        return false;
+	    if (!(obj instanceof Point))
+	        return false;
+	    Point other = (Point) obj;
+	    return this.xyz.equals(other.xyz);
 	}
+
+
 	//new method to get xyz
 	public Double3 getXyz() {
 		return xyz;
