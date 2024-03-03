@@ -48,7 +48,9 @@ public class Triangle extends Polygon{
 	 */
 	@Override
 	public List<Point> findIntersections(Ray ray) {
+		
 	    List<Point> intersections = new ArrayList<>();
+	    
 
 	    // Calculate the dot product between the ray's direction and the triangle's normal
 	    double denom = ray.direction.dotProduct(normal);
@@ -56,7 +58,7 @@ public class Triangle extends Polygon{
 	    // If the dot product is zero, the ray is parallel to the plane
 	    if (isZero(denom)) {
 	        // Ray is parallel to the plane, no intersection
-	        return intersections; // Return an empty list
+	        return null; // Return an empty list
 	    }
 
 	    // Calculate the distance from the ray's origin to the triangle
