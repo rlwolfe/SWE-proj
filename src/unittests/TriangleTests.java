@@ -64,16 +64,16 @@ class TriangleTests {
         Triangle triangle = new Triangle(new Point(0, 0, 0), new Point(4, 0, 0), new Point(0, 4, 0));
 
         // Test different rays against the triangle
-     // Ray originating from a point outside the triangle, opposite to an edge, and pointing towards it no intersections
-        Ray ray1 = new Ray(new Point(-1, -1, -1), new Vector(0, 0, -1));
-        assertNull( triangle.findIntersections(ray1));
+     // Ray originating from a point outside the triangle, opposite to an edge, and pointing towards 1 intersection 
+        Ray ray1 = new Ray(new Point(2, 2, 1), new Vector(0, 0, -1));
+        assertEquals(1, triangle.findIntersections(ray1).size());
 
         // Ray originating from a point inside the triangle and pointing towards it
         Ray ray2 = new Ray(new Point(1, 1, 1), new Vector(0.5, 0.5, -1));
         assertEquals(1, triangle.findIntersections(ray2).size());
 
         // Ray originating from a point outside the triangle and pointing away from it
-        Ray ray3 = new Ray(new Point(-1, -1, 1), new Vector(-0.5, -0.5, 1));
+        Ray ray3 = new Ray(new Point(-1, -1, 1), new Vector(0, 0, -1));
         assertNull(triangle.findIntersections(ray3));
 
         // Ray originating from a point on one of the triangle edges

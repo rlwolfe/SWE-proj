@@ -99,11 +99,11 @@ public class Plane implements Geometry {
         double t = p0l0.dotProduct(normal) / denom; 
 
         // Ensure the intersection point is in front of the ray's head (t > 0)
-        if (t > 0) {
+      if (t > 0) {
             // Calculate the intersection point and add it to the list
             Point intersection = ray.getPoint(t);
             intersections.add(intersection);
-        }
+     }
 
         return intersections; // Return list of intersection points
     }

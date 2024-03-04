@@ -2,6 +2,7 @@ package geometries;
 import static primitives.Util.isZero;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,28 +45,47 @@ public class Geometries implements Intersectable {
 			this.geometries.add(geometry);
 		}
 	}
-	
 	@Override
 	public List<Point> findIntersections(Ray ray) {
-		List<Point> intersections = new ArrayList<>();
-		int i = 0;
+	    List<Point> intersections = new ArrayList<>();
 
-		for(Intersectable geometry : geometries) {
-			Geometry geoObj = (Geometry)geometry;
-			for(Point point : geoObj.findIntersections(ray)) {
-				if(intersections.isEmpty())
-					intersections.add(point);	
-				else {
-					for(Point intersect : intersections)
-						if(point.distance(ray.head) < intersect.distance(ray.head)) {
-							i = intersections.indexOf(intersect);
-							intersections.add(i, point);
-						}
-				}
-			}
-		}
-		if (intersections.size() == 0) { return null; }
-		
-		return intersections;
+	    for (Intersectable geometry : geometries) {
+	        List<Point> geometryIntersections = geometry.findIntersections(ray);
+	        if (geometryIntersections != null) {
+	            intersections.addAll(geometryIntersections);
+	        }
+	    }
+
+	    // Sort the intersections based on their distance from the ray's head
+	    intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.head)));
+	    if(intersections.size()==0)
+	    	return null;
+	    
+	    return intersections;
 	}
+
+	
+//	@Override
+//	public List<Point> findIntersections(Ray ray) {
+//		List<Point> intersections = new ArrayList<>();
+//		int i = 0;
+//
+//		for(Intersectable geometry : geometries) {
+//			Geometry geoObj = (Geometry)geometry;
+//			for(Point point : geoObj.findIntersections(ray)) {
+//				if(intersections.isEmpty())
+//					intersections.add(point);	
+//				else {
+//					for(Point intersect : intersections)
+//						if(point.distance(ray.head) < intersect.distance(ray.head)) {
+//							i = intersections.indexOf(intersect);
+//							intersections.add(i, point);
+//						}
+//				}
+//			}
+//		}
+//		if (intersections.size() == 0) { return null; }
+//		
+//		return intersections;
+//	}
 }
