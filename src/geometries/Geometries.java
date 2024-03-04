@@ -68,7 +68,7 @@ public class Geometries implements Intersectable {
 	    
 	    return intersections;
 	}
-
+}
 	
 //	@Override
 //	public List<Point> findIntersections(Ray ray) {
@@ -78,13 +78,14 @@ public class Geometries implements Intersectable {
 //		for(Intersectable geometry : geometries) {
 //			Geometry geoObj = (Geometry)geometry;
 //			for(Point point : geoObj.findIntersections(ray)) {
-//				if(intersections.isEmpty())
-//					intersections.add(point);	
+//				if(intersections.isEmpty())		//there are no points intersected yet 
+//					intersections.add(point);	//add this intersection point
 //				else {
-//					for(Point intersect : intersections)
-//						if(point.distance(ray.head) < intersect.distance(ray.head)) {
-//							i = intersections.indexOf(intersect);
-//							intersections.add(i, point);
+//					for(Point intersect : intersections)	//there are other points already intersecting
+//						if(point.distance(ray.head) < intersect.distance(ray.head)) {	//find which intersection is first
+//							i = intersections.indexOf(intersect);		//if the new one is closer it replaces another, find the location
+//							intersections.add(i, point);				//and put it before that other one
+//							break;			// no need to check more intersections after we see one is greater
 //						}
 //				}
 //			}
@@ -93,4 +94,3 @@ public class Geometries implements Intersectable {
 //		
 //		return intersections;
 //	}
-}

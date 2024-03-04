@@ -37,8 +37,7 @@ public class Triangle extends Polygon{
 	 */
 	@Override
 	public Vector getNormal(Point p) {		
-		return  super.plane.getNormal();
-		// this is where I get an error or failure when running the test. that the triangle is not orthogonal 
+		return  super.plane.getNormal(p);
 	}
 
 	/**
@@ -48,44 +47,30 @@ public class Triangle extends Polygon{
 	 */
 	@Override
 	public List<Point> findIntersections(Ray ray) {
-		//we need to see if its in the plane first 
-		List<Point> planeIntersections = plane.findIntersections(ray);
-	    if (planeIntersections == null) {
-	        // If there are no intersections with the plane, return null
-	        return null;
-	    }
-	 // Check if the intersection points are inside the triangle
-	 // Check if the intersection points are inside the triangle
+		
 	    List<Point> intersections = new ArrayList<>();
-	    for (Point intersection : planeIntersections) {
-	        // Calculate barycentric coordinates
-	    	
-	        Vector v0 = vertices.get(2).subtract(vertices.get(0));
-	        Vector v1 = vertices.get(1).subtract(vertices.get(0));
-	        Vector v2 = intersection.subtract(vertices.get(0));
+	    
 
-	        double dot00 = v0.dotProduct(v0);
-	        double dot01 = v0.dotProduct(v1);
-	        double dot02 = v0.dotProduct(v2);
-	        double dot11 = v1.dotProduct(v1);
-	        double dot12 = v1.dotProduct(v2);
+	    // Calculate the dot product between the ray's direction and the triangle's normal
+	    double denom = ray.direction.dotProduct(normal);
 
-	        double invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
-	        double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
-	        if (u < 0 || u > 1) {
-	            continue;
-	        }
+	    // If the dot product is zero, the ray is parallel to the plane
+	    if (isZero(denom)) {
+	        // Ray is parallel to the plane, no intersection
+	        return null; // Return an empty list
+	    }
 
-	        double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
-	        if (v < 0 || v > 1) {
-	            continue;
-	        }
+	    // Calculate the distance from the ray's origin to the triangle
+	    Vector p0l0 = vertices.get(0).subtract(ray.head);
+	    double t = p0l0.dotProduct(normal) / denom;
 
-	        double w = 1 - u - v;
-	        if (w >= 0 && w <= 1) {
-	            // If the intersection point is inside the triangle, add it to the list
-	            intersections.add(intersection);
-	        }
+	    // Ensure the intersection point is in front of the ray's head (t > 0)
+	    if (t > 0) {
+	        // Calculate the intersection point
+	        Point intersection = ray.getPoint(t);
+
+	        // Add the intersection point to the list
+	        intersections.add(intersection);
 	    }
 
 	    return intersections.isEmpty() ? null : intersections;

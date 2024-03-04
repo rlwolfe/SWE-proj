@@ -37,10 +37,7 @@ public class Plane implements Geometry {
     	 // to get a normal you need to take two sides(vectors) 
         //and cross product, will give you a new vector that is called the normal . // this finds what is perpendicular (normal)
         // For now, you are just approximating the normal vector based on the cross product.
-        }
-    
-    
-    
+        }   
     
     /**
      * @param point
@@ -65,10 +62,10 @@ public class Plane implements Geometry {
      * @return normal of the object with given point
      */
     public Vector getNormal(Point point) {
-    	Vector v1 = point.subtract(this.point); // you find the vector between two points 
-    	Vector normalAtPoint = v1.crossProduct(normal);
+    	//Vector v1 = point.subtract(this.point); // you find the vector between two points 
+    	//Vector normalAtPoint = v1.crossProduct(normal);
     	// Normalize the result
-        return normalAtPoint.normalize(); // make sure it is normalized
+        return normal.normalize(); //normalAtPoint.normalize(); // make sure it is normalized
     }
     /**
      * Finds the intersection points between a ray and this plane
