@@ -7,12 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import geometries.Triangle;
 import primitives.Point;
 import primitives.Vector;
-import primitives.Double3;
 import primitives.Ray;
 
 import org.junit.jupiter.api.Test;
-import geometries.Plane;
-import java.util.List;
 
 class TriangleTests {
 	private final double DELTA = 0.000001;

@@ -8,7 +8,13 @@ package primitives;
  * Overridden methods is: toSring 
  */
 public class Ray {
+	/**
+	 * head of the ray 
+	 */
 	final public Point head;
+	/**
+	 * direction of the ray
+	 */
 	final public Vector direction;
 		
 	/**

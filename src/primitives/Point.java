@@ -10,7 +10,10 @@ package primitives;
 public class Point {
 	 final protected Double3 xyz;
 	 
-	 public static final Point ZERO = new Point(0, 0, 0);
+	 /**
+	 * returns Point object with all zeros for x,y and z coordinates
+	 */
+	public static final Point ZERO = new Point(0, 0, 0);
 	 
 	 /**
 	 * @param p1
@@ -42,8 +45,10 @@ public class Point {
 	    return this.xyz.equals(other.xyz);
 	}
 
-
-	//new method to get xyz
+	/**
+	 * 
+	 * @return xyz point's coordinates in Double3 format 
+	 */
 	public Double3 getXyz() {
 		return xyz;
 	}

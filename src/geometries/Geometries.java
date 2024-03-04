@@ -1,5 +1,4 @@
 package geometries;
-import static primitives.Util.isZero;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -7,15 +6,21 @@ import java.util.List;
 
 import primitives.Point;
 import primitives.Ray;
-import primitives.Vector;
 
 
 /**
- * 
+ * Bella & Rachel
+ * constructors accept a list of geometries or nothing (default)
+ * fields include: list of all geometries
+ * public methods consist of: add that adds a new geometry (or more) to the list
+ * Overridden methods are: findIntersections
  */
 public class Geometries implements Intersectable {
 	private final List<Intersectable> geometries;
 
+	/**
+	 * @return list of geometries
+	 */
 	public List<Intersectable> getGeometries() {
 		return geometries;
 	}
