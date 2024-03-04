@@ -50,7 +50,7 @@ public class Sphere extends RadialGeometry{
 
         // Calculate the distance from the ray's origin to the closest approach point
         Vector projection = ray.direction.scale(tClosestApproach);
-        double distanceToCenterSquared = rayToCenter.lengthSquared();
+        //double distanceToCenterSquared = rayToCenter.lengthSquared();
 
         // Calculate the distance between the closest approach point and the sphere's center
         double dSquared = projection.subtract(rayToCenter).lengthSquared();

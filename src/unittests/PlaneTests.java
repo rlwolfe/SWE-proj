@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import java.util.LinkedList;
 
 class PlaneTests {
 
@@ -80,7 +79,7 @@ class PlaneTests {
 	    // Test case: Ray intersects the plane
 		Plane plane= new Plane(pp0,pv01);
 		Ray ray = new Ray (rp1, rv01);
-		double ortho = ray.direction.dotProduct(plane.getNormal());
+		//double ortho = ray.direction.dotProduct(plane.getNormal());
 		
 		
 	    List<Point> intersections = plane.findIntersections(ray);
