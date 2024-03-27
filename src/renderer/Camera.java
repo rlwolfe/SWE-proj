@@ -98,7 +98,7 @@ public class Camera implements Cloneable {
 				this.camera.distance=disvp-disc;
 				return this;
 			}
-			public Camera  build()
+			public Camera build() throws CloneNotSupportedException
 			{
 //				The method will check for all the relevant camera fields that have a non-zero value, according to
 //				the type of each field (that is, we did not forget to prepare the value)
@@ -125,7 +125,8 @@ public class Camera implements Cloneable {
 	            }
 				camera.vright=camera.vto.crossProduct(camera.vup); // will implement the vright with vupXvto
                 camera.vright.normalize();
-				return (Camera) camera.clone();
+				
+                return (Camera) camera.clone();
 			
 			}
 		}
