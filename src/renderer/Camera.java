@@ -69,11 +69,11 @@ public class Camera implements Cloneable {
 		
 		public static class Builder{
 			private final Camera camera=new Camera();  // created here in the definiton 
-			Builder setLocation(Point p) { // setting camera location though this method 
+			public Builder setLocation(Point p) { // setting camera location though this method 
 				this.camera.location=p;
 				return this;
 			}
-			Builder setDirection(Vector vu, Vector vt)
+			public Builder setDirection(Vector vu, Vector vt)
 			{
 				if (!isZero(vu.dotProduct(vt))) { // this will check that it is vertical
 	                throw new IllegalArgumentException("the vectors are not vertical");
@@ -87,18 +87,18 @@ public class Camera implements Cloneable {
 				return this;
 				
 			}
-			Builder setVpSize (double h, double w) { // settingup the size of view plane 
+			public Builder setVpSize (double h, double w) { // settingup the size of view plane 
 				this.camera.height=h;
 				this.camera.width=w;
 				return this;
 				
 			}
-			Builder setVpDistance(double disc, double disvp) //we subrtact one from the other to get distance
+			public Builder setVpDistance( double disvp) //we subrtact one from the other to get distance
 			{
-				this.camera.distance=disvp-disc;
+				this.camera.distance=disvp;
 				return this;
 			}
-			public Camera build() throws CloneNotSupportedException
+			public Camera build() //throws CloneNotSupportedException
 			{
 //				The method will check for all the relevant camera fields that have a non-zero value, according to
 //				the type of each field (that is, we did not forget to prepare the value)
@@ -126,7 +126,7 @@ public class Camera implements Cloneable {
 				camera.vright=camera.vto.crossProduct(camera.vup); // will implement the vright with vupXvto
                 camera.vright.normalize();
 				
-                return (Camera) camera.clone();
+                return (Camera) camera;//.clone();
 			
 			}
 		}
