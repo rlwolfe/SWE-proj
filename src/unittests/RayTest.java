@@ -18,19 +18,17 @@ class RayTest {
 		double tneg=-1;
 		double tzero=0;
 		Point testpositive=new Point(3,6,9);
-		Point testneg= new Point(-1, -2, -3);
-		
-		
-		
+		Point testneg= new Point(-1, -2, -3);	
 	
 		assertEquals(testpositive, r1.getPoint(tpos), "Error, positive point calculation from Ray");
 		assertEquals(testneg, r1.getPoint(tneg), "Error, negative point calculation from Ray");
 		assertEquals(p1, r1.getPoint(tzero), "Error, doesnt return head when t is zero");
 
-		
-		
-		
-		
 	}
-
+	@Test
+	void testFindClosestPoint() {
+			//EP
+			//BVA (empty, first, last)
+			
+	}
 }
