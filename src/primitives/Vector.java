@@ -7,10 +7,12 @@ package primitives;
  * public methods consist of: length, lengthSquared, add, scale, dotProduct, crossProduct and normalize
  * Overridden methods are: toSring and equals   
  */
-public class Vector extends Point{
-	// double size; ???
-	// direction
-	 
+public class Vector extends Point{ 
+    /**
+     * Y Axis
+     */
+    public static final Vector Y = new Vector(0,1,0);
+    
 	 /**
 	 * @param p1 (double)
 	 * @param p2 (double)
