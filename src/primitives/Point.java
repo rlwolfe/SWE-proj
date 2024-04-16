@@ -63,19 +63,20 @@ public class Point {
 	 * @return point with the coordinates from the given parameters
 	 */
 	public Point add(Vector vec) {
-		double p1,p2,p3;
-		
-		p1=this.xyz.d1+vec.xyz.d1;
-		p2=this.xyz.d2+vec.xyz.d2;
-		p3=this.xyz.d3+vec.xyz.d3;
-		return new Point(p1,p2,p3);
+		/*
+		 * double p1,p2,p3;
+		 * 
+		 * p1=this.xyz.d1+vec.xyz.d1; p2=this.xyz.d2+vec.xyz.d2;
+		 * p3=this.xyz.d3+vec.xyz.d3; return new Point(p1,p2,p3);
+		 */
+		return new Point(xyz.add(vec.xyz));
 	} 
 
 	/**
 	 * @param p
 	 * @return calculated distance between the object that called the function and the parameter
 	 */
-	public double distance (Point p) {
+	public double distance(Point p) {
 		return Math.sqrt(distanceSquared(p));
 	}
 	

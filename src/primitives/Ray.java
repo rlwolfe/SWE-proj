@@ -60,7 +60,18 @@ public class Ray {
 	 * @return point that is the closest to the ray's head
 	 */
 	public Point findClosestPoint(List<Point> points) {
+		if (points==null)
+            return null;
 		
-		return direction;
+		Point closest = null;
+		double dist, currDist = Double.MAX_VALUE;
+		for (Point point : points) {
+            dist = head.distance(point);
+            if (dist < currDist) {
+                currDist = dist;
+                closest = point;
+            }
+        }
+		return closest;
 	}
 }

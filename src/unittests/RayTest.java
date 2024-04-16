@@ -45,14 +45,23 @@ class RayTest {
 		
 		Point point1 = new Point(1, 0, 0);
 		Point point2 = new Point(4, 0, 0);
-		Ray ray = new Ray( new Point(0.5, 0, 0), new Vector(1, 0, 0));
-	    Triangle triangle = new Triangle(new Point(4, -2, -1),new Point(4, 2, -1),new Point(4, 0, 1));
-	    Sphere sphere = new Sphere(new Point(2, 0, 0), 1);
-	    Plane plane = new Plane(new Point(5, 2, 2),new Vector(1, 0, 0));
+		Point pt1 = new Point(0.5, 0, 0);
+		Point pt2 = new Point(4, -2, -1);
+		Point pt3 = new Point(4, 2, -1);
+		Point pt4 = new Point(4, 0, 1);
+		Point pt5 = new Point(2, 0, 0);
+		Point pt6 = new Point(5, 2, 2);
+		Vector vector = new Vector(1, 0, 0);
+		
+		Ray ray = new Ray( pt1, vector);
+	    Triangle triangle = new Triangle(pt2, pt3, pt4);
+	    Sphere sphere = new Sphere(pt5, 1);
+	    Plane plane = new Plane(pt6, vector);
+
+	    Geometries emptyGeometries = new Geometries();
 	    Geometries geometries1 = new Geometries(triangle, sphere, plane);
 	    Geometries geometries2 = new Geometries(sphere, triangle, plane);
 	    Geometries geometries3 = new Geometries(plane, triangle);
-	    Geometries emptyGeometries = new Geometries();
 	    		
 		// ============ Equivalence Partitions Tests ==============
 
