@@ -20,6 +20,7 @@ public class Camera implements Cloneable {
 	public static Builder getBuilder() {
 		return new Builder();
 	}
+	
 	public Point getLocation() {
 		return location;
 	}
@@ -48,10 +49,15 @@ public class Camera implements Cloneable {
 		return vright;
 	}
 
-	public void setVright(Vector vright) {
-		this.vright = vright;
-	}
+	//public void setVright(Vector vright) {
+	//	this.vright = vright;
+	//}
 
+/**
+ * 
+ * 
+ * 
+ */
 	private Camera() {
 		location=new Point(0,0,0);
 		vto= new Vector (0,0,0);
@@ -62,8 +68,34 @@ public class Camera implements Cloneable {
 		
 		} // private default contructor
 	
+/**
+ * 	
+ * @param nX
+ * @param nY
+ * @param j
+ * @param i
+ * @return
+ */
 		public Ray constructRay(int nX, int nY, int j, int i) {
-			return null;
+
+			 // Implementation of constructing the ray
+	        // Calculate the center point of the pixel
+	        double xJ = (j - (nX-1) / 2.0) * (width / nX);
+	        double yI = -(i-((nY-1)/2.0)) * (height / nY);
+	        
+	        
+	     // Calculate Pc
+	        Point pc = location.add(vto.scale(distance));
+	        
+	        
+	        // Calculate the point Pi,j
+	        Point pIJ = pc.add(vright.scale(xJ)).add(vup.scale(yI));
+	        
+	        // Calculate the ray direction from camera location to Pi,j
+	        Vector rayDirection = pIJ.subtract(location);
+	        
+	        // Return the constructed ray
+	        return new Ray(location, rayDirection);
 			
 		}
 		
@@ -80,10 +112,12 @@ public class Camera implements Cloneable {
 	            }
 				this.camera.vup=vu;
 				this.camera.vto=vt;
+				this.camera.vright=vu.crossProduct(vt);
 				
 				
 				this.camera.vup.normalize(); // will normalize it 
 				this.camera.vto.normalize();
+				this.camera.vright.normalize();
 				return this;
 				
 			}

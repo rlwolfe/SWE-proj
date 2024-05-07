@@ -119,11 +119,14 @@ public class Vector extends Point{
 	 * @return the current vector, but normalized 
 	 */
 	public Vector normalize() {
-		double normx=0.0, normy=0.0, normz=0.0;
-		normx=this.xyz.d1/length();
-		normy=this.xyz.d2/length();
-		normz=this.xyz.d3/length();
-		return new Vector(normx,normy,normz);
+		double len = Math.sqrt(lengthSquared());
+	    if (len == 0) {
+	        throw new ArithmeticException("Cannot normalize a zero vector");
+	    }
+	    double normx = this.xyz.d1 / len;
+	    double normy = this.xyz.d2 / len;
+	    double normz = this.xyz.d3 / len;
+	    return new Vector(normx, normy, normz);
 		
 	}
 }
