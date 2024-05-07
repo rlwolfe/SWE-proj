@@ -63,10 +63,10 @@ public class Camera implements Cloneable {
 	}
 
 	private Camera() {
-		location=new Point(0,0,0);
-		vto= new Vector (0,0,0);
-		vup =  new Vector(0,0,0);
-		vright = new Vector(0,0,0);
+		location = null; //new Point(0,0,0);
+		vto = null; //new Vector (0,0,0);
+		vup = null; //new Vector(0,0,0);
+		vright = null; //new Vector(0,0,0);
 
 	} // private default constructor
 
@@ -142,12 +142,9 @@ public class Camera implements Cloneable {
 			if (!isZero(vu.dotProduct(vt))) { // this will check that it is vertical
 				throw new IllegalArgumentException("the vectors are not vertical");
 			}
-			this.camera.vup=vu;
-			this.camera.vto=vt;
-
-
-			this.camera.vup.normalize(); // will normalize it 
-			this.camera.vto.normalize();
+			this.camera.vup=vu.normalize(); // will normalize it then set it
+			this.camera.vto=vt.normalize();
+			this.camera.vright=vu.crossProduct(vt).normalize();
 			return this;
 
 		}
@@ -178,11 +175,12 @@ public class Camera implements Cloneable {
 		 * runs through the pixels and prints them in order to render the image
 		 */
 		public Builder renderImage() {
-			for(int i = 0; i < camera.imageWriter.getNy(); ++i) {
-				for(int j = 0; j < camera.imageWriter.getNx(); ++j) {
-					camera.castRay( camera.imageWriter.getNx(), camera.imageWriter.getNy(), j, i);
+			for(int i = 0; i < camera.width; ++i) {
+				for(int j = 0; j < camera.height; ++j) {
+					camera.castRay( (int)camera.width, (int)camera.height, j, i);
 				}
 			}
+			writeToImage();
 			return this;
 		}
 
@@ -199,6 +197,7 @@ public class Camera implements Cloneable {
 					}
 				}
 			}
+			writeToImage();
 			return this;
 		}
 
@@ -230,7 +229,10 @@ public class Camera implements Cloneable {
 				throw new MissingResourceException("Rendering data is missing",
 						"Camera", "Vector up data is missing");
 			}
-
+			if (camera.vright == null) {
+				throw new MissingResourceException("Rendering data is missing",
+						"Camera", "Vector right data is missing");
+			}
 
 			if (camera.width <= 0 || camera.height <= 0 || camera.distance <= 0) {
 				throw new MissingResourceException("Rendering data is missing",
