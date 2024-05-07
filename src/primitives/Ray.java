@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.List;
+
 /**
  * Bella & Rachel
  * constructors accept a point and a vector
@@ -53,4 +55,23 @@ public class Ray {
 		return head.add(direction.scale(t));
 		}
 	
+	/**
+	 * @param points (list of points that are on the ray)
+	 * @return point that is the closest to the ray's head
+	 */
+	public Point findClosestPoint(List<Point> points) {
+		if (points==null)
+            return null;
+		
+		Point closest = null;
+		double dist, currDist = Double.MAX_VALUE;
+		for (Point point : points) {
+            dist = head.distance(point);
+            if (dist < currDist) {
+                currDist = dist;
+                closest = point;
+            }
+        }
+		return closest;
+	}
 }

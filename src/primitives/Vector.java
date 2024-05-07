@@ -7,10 +7,12 @@ package primitives;
  * public methods consist of: length, lengthSquared, add, scale, dotProduct, crossProduct and normalize
  * Overridden methods are: toSring and equals   
  */
-public class Vector extends Point{
-	// double size; ???
-	// direction
-	 
+public class Vector extends Point{ 
+    /**
+     * Y Axis
+     */
+    public static final Vector Y = new Vector(0,1,0);
+    
 	 /**
 	 * @param p1 (double)
 	 * @param p2 (double)
@@ -75,12 +77,13 @@ public class Vector extends Point{
 	 * @return Vector with the sum of the current plus given
 	 */
 	public Vector add(Vector vec) {
-		double p1,p2,p3;
+		/*double p1,p2,p3;
 		//check parallel and throw if true
 		p1=this.xyz.d1+vec.xyz.d1;
 		p2=this.xyz.d2+vec.xyz.d2;
 		p3=this.xyz.d3+vec.xyz.d3;
-		return new Vector(p1,p2,p3);
+		return new Vector(p1,p2,p3);*/
+		return new Vector(xyz.add(vec.xyz));
 	}
 	
 	/**
@@ -88,11 +91,12 @@ public class Vector extends Point{
 	 * @return scalar multiple of the current vector and the given
 	 */
 	public Vector scale(double scalar) {
-		double p1,p2,p3;		
+		/*double p1,p2,p3;		
 		p1=this.xyz.d1*scalar;
 		p2=this.xyz.d2*scalar;
 		p3=this.xyz.d3*scalar;
-		return new Vector(p1,p2,p3);
+		return new Vector(p1,p2,p3);*/
+		return new Vector(xyz.scale(scalar));
 	}
 	
 	/**
