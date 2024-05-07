@@ -73,13 +73,13 @@ public class Camera implements Cloneable {
 	/**
 	 * runs through the pixels and prints them in order to render the image 
 	 *
-	public void renderImage() {
-		for(int i = 0; i < imageWriter.getNy(); ++i) {
-			for(int j = 0; j < imageWriter.getNx(); ++j) {
-				castRay( imageWriter.getNx(), imageWriter.getNy(), j, i);
-			}
-		}
-	}*/
+public void renderImage() {
+for(int i = 0; i < imageWriter.getNy(); ++i) {
+for(int j = 0; j < imageWriter.getNx(); ++j) {
+castRay( imageWriter.getNx(), imageWriter.getNy(), j, i);
+}
+}
+}*/
 
 	/**
 	 * create a ray through the center, calculate the color and color in that pixel
