@@ -62,8 +62,8 @@ public class Geometries implements Intersectable {
 	    }
 
 	    // Sort the intersections based on their distance from the ray's head
-	    intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.head)));
-	    if(intersections.size()==0)
+	    intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
+	    if(intersections.isEmpty())
 	    	return null;
 	    
 	    return intersections;

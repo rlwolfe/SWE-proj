@@ -1,5 +1,9 @@
 package renderer;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import geometries.Intersectable;
 import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
@@ -21,10 +25,19 @@ public class SimpleRayTracer extends RayTracerBase {
 
 	@Override
 	public Color traceRay(Ray ray) {
-		Point point = ray.findClosestPoint(scene.geometries.findIntersections(ray)); 
-		if (point == null)
+		List<Point> intersections = new LinkedList();
+		
+		for (Intersectable intersect : scene.intersectables) {
+			List<Point> intersectToAdd = intersect.findIntersections(ray);
+			if (intersectToAdd != null)
+				intersections.addAll(intersectToAdd);
+		}
+		//Point point = ray.findClosestPoint(scene.geometries.findIntersections(ray)); 
+		//if (point == null)
+		if (intersections.isEmpty())
 			return scene.background;
-		return calcColor(point);
+		else
+			return calcColor(ray.findClosestPoint(intersections));
 	}
 
 	/**

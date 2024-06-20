@@ -9,14 +9,10 @@ import java.util.MissingResourceException;
 import primitives.Ray;
 
 
-public class Camera implements Cloneable {
+public class Camera { //implements Cloneable {
 	private Point location;
-	private Vector vto;
-	private Vector vup;
-	private Vector vright;
-	double width;
-	double height;
-	double distance;
+	private Vector vto, vup, vright;
+	private double width, height, distance;
 	private ImageWriter imageWriter;
 	private RayTracerBase rayTracer;
 
@@ -42,10 +38,22 @@ public class Camera implements Cloneable {
 	public Vector getVright() {
 		return vright;
 	}
+	
+	public double getWidth() {
+		return width;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
+	
+	public double getDistance() {
+		return distance;
+	}
 
 	/**
 	 * setters
-	 */
+	 *
 	public void setLocation(Point location) {
 		this.location = location;
 	}
@@ -60,7 +68,7 @@ public class Camera implements Cloneable {
 
 	public void setVright(Vector vright) {
 		this.vright = vright;
-	}
+	}*/
 
 	private Camera() {
 		location = null; //new Point(0,0,0);
@@ -70,16 +78,13 @@ public class Camera implements Cloneable {
 
 	} // private default constructor
 
-	/**
-	 * runs through the pixels and prints them in order to render the image 
-	 *
-public void renderImage() {
-for(int i = 0; i < imageWriter.getNy(); ++i) {
-for(int j = 0; j < imageWriter.getNx(); ++j) {
-castRay( imageWriter.getNx(), imageWriter.getNy(), j, i);
-}
-}
-}*/
+	/*
+	* runs through the pixels and prints them in order to render the image
+	*
+	* public void renderImage() { for(int i = 0; i < imageWriter.getNy(); ++i) {
+		* for(int j = 0; j < imageWriter.getNx(); ++j) { castRay( imageWriter.getNx(),
+				* imageWriter.getNy(), j, i); } } }
+	*/
 
 	/**
 	 * create a ray through the center, calculate the color and color in that pixel
@@ -134,22 +139,25 @@ castRay( imageWriter.getNx(), imageWriter.getNy(), j, i);
 		 * setters
 		 */
 		public Builder setLocation(Point p) { // setting camera location though this method 
-			this.camera.location=p;
+			this.camera.location = p;
 			return this;
 		}
 
-		public Builder setDirection(Vector vu, Vector vt) {
-			if (!isZero(vu.dotProduct(vt))) { // this will check that it is vertical
+		public Builder setDirection(Vector vt, Vector vu) {
+			if (!isZero(vt.dotProduct(vu))) { // this will check that it is vertical
 				throw new IllegalArgumentException("the vectors are not vertical");
 			}
 			this.camera.vup=vu.normalize(); // will normalize it then set it
 			this.camera.vto=vt.normalize();
-			this.camera.vright=vu.crossProduct(vt).normalize();
+			this.camera.vright=vt.crossProduct(vu).normalize();
 			return this;
 
 		}
 
-		public Builder setVpSize (double h, double w) { // setting up the size of view plane 
+		public Builder setVpSize (double w, double h) { // setting up the size of view plane 
+			if (w <= 0 || h <= 0)
+				throw new IllegalArgumentException("the width or height is negative");
+						
 			this.camera.height=h;
 			this.camera.width=w;
 			return this;
@@ -157,6 +165,9 @@ castRay( imageWriter.getNx(), imageWriter.getNy(), j, i);
 		}
 
 		public Builder setVpDistance( double disvp) { //we subtract one from the other to get distance
+			if (disvp <= 0)
+				throw new IllegalArgumentException("the distance is negative");
+			
 			this.camera.distance=disvp;
 			return this;
 		}
@@ -190,8 +201,10 @@ castRay( imageWriter.getNx(), imageWriter.getNy(), j, i);
 		 * @param color
 		 */
 		public Builder printGrid(int count, Color color) {
-			for(int i = 0; i < camera.imageWriter.getNy() ; ++i) {
-				for(int j = 0; j < camera.imageWriter.getNx(); ++j) {
+			for(int i = 0; i < camera.width; ++i) {
+				for(int j = 0; j < camera.height; ++j) {
+			//for(int i = 0; i < camera.imageWriter.getNy() ; ++i) {
+				//for(int j = 0; j < camera.imageWriter.getNx(); ++j) {
 					if(j % count == 0 || i % count == 0) {
 						camera.imageWriter.writePixel(j, i, color);
 					}
@@ -238,8 +251,8 @@ castRay( imageWriter.getNx(), imageWriter.getNy(), j, i);
 				throw new MissingResourceException("Rendering data is missing",
 						"Camera", "Width, Height, or Distance value is missing or incorrect");
 			}
-			camera.vright=camera.vto.crossProduct(camera.vup); // will implement the vright with vupXvto
-			camera.vright.normalize();
+			//camera.vright=camera.vto.crossProduct(camera.vup); // will implement the vright with vupXvto
+			//camera.vright.normalize();
 
 			if (camera.imageWriter == null) {
 				throw new MissingResourceException("imageWriter is missing",

@@ -18,7 +18,8 @@ public class RenderTests {
    /** Camera builder of the tests */
    private final Camera.Builder camera = Camera.getBuilder()
       .setRayTracer(new SimpleRayTracer(scene))
-      .setLocation(Point.ZERO).setDirection(new Vector(0, 0, -1), Vector.Y)
+      .setLocation(Point.ZERO)
+      .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
       .setVpDistance(100)
       .setVpSize(500, 500);
 
@@ -26,23 +27,22 @@ public class RenderTests {
     * grid */
    @Test
    public void renderTwoColorTest() {
-      scene.geometries.add(new Sphere(new Point(0, 0, -100), 50d),
-                           new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
+      scene.intersectables.add(new Sphere(new Point(0, 0, -100), 50d));
+      scene.intersectables.add(new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100))); // up
                            // left
-                           new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100),
-                                        new Point(-100, -100, -100)), // down
+      scene.intersectables.add(new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100), new Point(-100, -100, -100))); // down
                            // left
-                           new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))); // down
+      scene.intersectables.add(new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))); // down
       scene.setAmbientLight(new AmbientLight(new Color(255, 191, 191), Double3.ONE))
          .setBackground(new Color(75, 127, 90));
 
       // right
       camera
          .setImageWriter(new ImageWriter("base render test", 1000, 1000))
-         .build();
-         camera.renderImage()
+         .renderImage()
          .printGrid(100, new Color(YELLOW))
-         .writeToImage();
+         .writeToImage()
+         .build();
    }
 
    /** Test for XML based scene - for bonus **

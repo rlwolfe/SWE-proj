@@ -13,11 +13,11 @@ public class Ray {
 	/**
 	 * head of the ray 
 	 */
-	final public Point head;
+	final private Point head;
 	/**
 	 * direction of the ray
 	 */
-	final public Vector direction;
+	final private Vector direction;
 		
 	/**
 	 * @param head (head)
@@ -25,8 +25,8 @@ public class Ray {
 	 * constructor that receive a point and a vector and assigns them
 	 */
 	public Ray(Point head, Vector direction) {
-		this.head = head;
 		this.direction = direction.normalize();
+		this.head = head;
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class Ray {
 
 	@Override
 	public String toString() {
-		return "head=" + head + ", direction=" + direction;
+		return "head=" + head.toString() + ", direction=" + direction.toString();
 	}
 	
 	/**
@@ -53,24 +53,37 @@ public class Ray {
 		if(t==0)
 			return head;
 		return head.add(direction.scale(t));
-		}
+	}
+	
+	public final Point getHead() {
+		return head;
+	}
+	
+	public final Vector getDirection() {
+		return direction;
+	}
+	
+	public Point findRayPoint(double t) {
+		return head.add(direction.scale(t));
+	}
 	
 	/**
 	 * @param points (list of points that are on the ray)
 	 * @return point that is the closest to the ray's head
 	 */
 	public Point findClosestPoint(List<Point> points) {
-		if (points==null)
+		if (points.isEmpty())
             return null;
 		
-		Point closest = null;
-		double dist, currDist = Double.MAX_VALUE;
+		Point closest = points.get(0);
+		//double dist, currDist = Double.MAX_VALUE;
 		for (Point point : points) {
-            dist = head.distance(point);
-            if (dist < currDist) {
-                currDist = dist;
+            //dist = head.distance(point);
+            //if (dist < currDist) {
+            //    currDist = dist;
+			if (head.distance(point) < head.distance(closest))
                 closest = point;
-            }
+            //}
         }
 		return closest;
 	}

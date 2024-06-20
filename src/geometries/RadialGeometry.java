@@ -7,8 +7,8 @@ package geometries;
  * there are no methods
  */
 public abstract class RadialGeometry implements Geometry{
-	double radius;
-	
+	//double radius;
+	private final double radius;
 	/**
 	 * @param radius
 	 * constructor that receives the radius and assigns it to the object
@@ -16,6 +16,8 @@ public abstract class RadialGeometry implements Geometry{
 	public RadialGeometry(double radius) {
 	        this.radius = radius;
 	    }
-	
+	public final double getRadius() {
+		return radius;
+	}
 
 }

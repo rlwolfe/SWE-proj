@@ -1,11 +1,10 @@
 package geometries;
-import java.util.LinkedList;
 import java.util.List;
 
 import primitives.Point;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
-import static primitives.Util.*;
 
 /**
  * Bella & Rachel
@@ -16,8 +15,8 @@ import static primitives.Util.*;
  * no overridden methods
  */
 public class Plane implements Geometry {
-    Point point; // 3 points
-    Vector normal; // 3 points with a direciton 
+    private final Point point; // 3 points
+    private final Vector normal; // 3 points with a direction 
 
     /**
      * @param p1 (Point)
@@ -26,19 +25,24 @@ public class Plane implements Geometry {
      * constructor that receives 3 coordinates, calculates and assigns them to the object
      */
     public Plane(Point p1, Point p2, Point p3){ //fix this so that it throws an exception 
+    	
     	if (p1.equals(p2) || p1.equals(p3) || p2.equals(p3)) {
-            throw new IllegalArgumentException("Two or more points are equal");
-        }
-        
-        this.point = p1;
-        Vector side1 = p2.subtract(p1);
-        Vector side2 = p3.subtract(p1);
-        this.normal = side1.crossProduct(side2);
-    	 // to get a normal you need to take two sides(vectors) 
-        //and cross product, will give you a new vector that is called the normal . // this finds what is perpendicular (normal)
-        // For now, you are just approximating the normal vector based on the cross product.
-        }   
-    
+    		throw new IllegalArgumentException("Two or more points are equal");
+    	}
+
+    	this.point = p1;
+    	Vector side1 = p2.subtract(p1);
+    	Vector side2 = p3.subtract(p1);
+    	this.normal = side1.crossProduct(side2);
+    	// to get a normal you need to take two sides(vectors) 
+    	//and cross product, will give you a new vector that is called the normal . // this finds what is perpendicular (normal)
+    	// For now, you are just approximating the normal vector based on the cross product.
+    	
+    	if (normal.equals(Point.ZERO)) {
+    		throw new IllegalArgumentException("These point are on the same line");
+    	}
+    }   
+
     /**
      * @param point
      * @param normal
@@ -46,16 +50,17 @@ public class Plane implements Geometry {
      */
     public Plane(Point point, Vector normal) {
         this.point = point;
-        this.normal = normal.normalize(); // makes sure it is normalizes ( made into a length of 1) 
+        this.normal = normal;// .normalize(); // makes sure it is normalizes ( made into a length of 1) 
         //should check validity
     }
     
     /**
      * @return current normal of the object
      */
-    public Vector getNormal() {
-    	return normal.normalize(); // makes sure it is normalized 
-    }
+	/*
+	 * public Vector getNormal() { return normal.normalize(); // makes sure it is
+	 * normalized
+	 }*/
     
     /**
 	 * @param point (Point)
@@ -74,34 +79,39 @@ public class Plane implements Geometry {
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        List<Point> intersections = new LinkedList<>(); // Use List interface
 
-        // Calculate the dot product between the ray's direction and the plane's normal 
-        double denom = ray.direction.dotProduct(normal);
+    	if(point.equals(ray.getHead()))
+    		return null;
 
-        // If the dot product is zero, the ray is parallel to the plane
-        if (isZero(denom)) {
-            // Ray is parallel to the plane, no intersection
-            return null; // Return empty list instead of null
-        }
-        
-        boolean isParallel = Math.abs(denom) < 1e-10; // this is checking if the ray and plane are parallel
-        
-        if(isParallel)
-        return null; //if it is paraellel then no intersections. 
+    	//List<Point> intersections = new LinkedList<>(); // Use List interface
 
-        // Calculate the distance from the ray's origin to the plane
-        Vector p0l0 = point.subtract(ray.head);
-        double t = p0l0.dotProduct(normal) / denom; 
+    	// Calculate the dot product between the ray's direction and the plane's normal 
+    	double denom = normal.dotProduct(ray.getDirection());
 
-        // Ensure the intersection point is in front of the ray's head (t > 0)
-      if (t > 0) {
-            // Calculate the intersection point and add it to the list
-            Point intersection = ray.getPoint(t);
-            intersections.add(intersection);
-     }
+    	// If the dot product is zero, the ray is parallel to the plane
+    	if (Util.alignZero(denom) == 0) {
+    		// Ray is parallel to the plane, no intersection
+    		return null; // Return empty list instead of null
+    	}
 
-        return intersections; // Return list of intersection points
+    	/*boolean isParallel = Math.abs(denom) < 1e-10; // this is checking if the ray and plane are parallel
+
+    	if(isParallel)
+    		return null; //if it is parallel then no intersections. */ 
+
+    	// Calculate the distance from the ray's origin to the plane
+    	double numer = normal.dotProduct(point.subtract(ray.getHead()));
+    	double t = numer / denom; 
+
+    	// Ensure the intersection point is in front of the ray's head (t > 0)
+    	if (t <= 0) 
+    		return null;
+    	
+    	// Calculate the intersection point and add it to the list
+    	//Point intersection = ray.getPoint(t);
+    	//intersections.add(intersection);
+
+    	return List.of(ray.findRayPoint(t)); // Return list of intersection points
     }
 
 }

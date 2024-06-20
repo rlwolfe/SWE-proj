@@ -1,83 +1,55 @@
 package unittests;
-
+import primitives.*;
 import static org.junit.jupiter.api.Assertions.*;
-import primitives.Point;
-import primitives.Vector;
-import primitives.Ray;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import geometries.Geometries;
-import geometries.Plane;
-import geometries.Sphere;
-import geometries.Triangle;
+class RayTests {
 
-/**
- * Bella & Rachel
- */
-class RayTest {
-
-	/**
-	 * tests getPoint in ray
-	 */
 	@Test
-	void testGetPoint() {
-		Point p1= new Point(1,2,3);
-		Vector vec= new Vector(2,4,6);
-		Ray r1= new Ray (p1, vec);
-		double tpos=1;
-		double tneg=-1;
-		double tzero=0;
-		Point testpositive=new Point(3,6,9);
-		Point testneg= new Point(-1, -2, -3);	
-	
-		assertEquals(testpositive, r1.getPoint(tpos), "Error, positive point calculation from Ray");
-		assertEquals(testneg, r1.getPoint(tneg), "Error, negative point calculation from Ray");
-		assertEquals(p1, r1.getPoint(tzero), "Error, doesnt return head when t is zero");
+	void findClosestIntersectionTest() {
+		Ray r = new Ray(new Point(6.65, -0.52, 0), new Vector(-6.65, 0.52, 1.59));
+		Point a = new Point(4.75, -0.37, 0.45);
+		Point b = new Point(2.81, -0.22, 0.92);
+		Point c = new Point(1.09, -0.09, 1.33);
+		Point d = new Point(-1.64, 0.13, 1.98);
+		List<Point> noIintersections = new LinkedList();
+
+		List<Point> intersections1 = new LinkedList();
+		intersections1.add(b);
+		intersections1.add(a);
+		intersections1.add(c);
+		intersections1.add(d);
+
+		List<Point> intersections2 = new LinkedList();
+		intersections2.add(a);
+		intersections2.add(b);
+		intersections2.add(c);
+		intersections2.add(d);
+		
+		List<Point> intersections3 = new LinkedList();
+		intersections3.add(b);
+		intersections3.add(c);
+		intersections3.add(d);
+		intersections3.add(a);
+		
+	      // ============ Equivalence Partitions Tests ==============
+		//TC1 closest point is in middle of list
+		assertEquals(r.findClosestPoint(intersections1),a, "Error TC1 EP Test." );
+		
+	      // =============== Boundary Values Tests ==================
+		//TC2 closest point is at the beginning of list
+		assertEquals(r.findClosestPoint(intersections2),a, "Error TC2 BV Test." );
+		
+		//TC3 closest point is at the end of the list
+		assertEquals(r.findClosestPoint(intersections3),a, "Error TC3 BV Test." );
+		
+		//TC4 list of points is empty
+		assertEquals(r.findClosestPoint(noIintersections),null, "Error TC4 BV Test." );
 
 	}
-	
-	/**
-	 * tests getFindCloseestPoint in ray
-	 */
-	@Test
-	void testFindClosestPoint() {
-		
-		Point point1 = new Point(1, 0, 0);
-		Point point2 = new Point(4, 0, 0);
-		Point pt1 = new Point(0.5, 0, 0);
-		Point pt2 = new Point(4, -2, -1);
-		Point pt3 = new Point(4, 2, -1);
-		Point pt4 = new Point(4, 0, 1);
-		Point pt5 = new Point(2, 0, 0);
-		Point pt6 = new Point(5, 2, 2);
-		Vector vector = new Vector(1, 0, 0);
-		
-		Ray ray = new Ray( pt1, vector);
-	    Triangle triangle = new Triangle(pt2, pt3, pt4);
-	    Sphere sphere = new Sphere(pt5, 1);
-	    Plane plane = new Plane(pt6, vector);
 
-	    Geometries emptyGeometries = new Geometries();
-	    Geometries geometries1 = new Geometries(triangle, sphere, plane);
-	    Geometries geometries2 = new Geometries(sphere, triangle, plane);
-	    Geometries geometries3 = new Geometries(plane, triangle);
-	    		
-		// ============ Equivalence Partitions Tests ==============
-
-	    // TC01: point is found in the middle of the list
-		assertEquals(point1, ray.findClosestPoint(geometries1.findIntersections(ray)), "point is not the closest");
-		
-		// =============== Boundary Values Tests ==================
-		// TC10: point is not found because the list is empty
-		assertNull(ray.findClosestPoint(emptyGeometries.findIntersections(ray)), "empty list");
-		
-		// TC11: point is found as the first in the list
-        assertEquals(point1, ray.findClosestPoint(geometries2.findIntersections(ray)), "wrong intersection point when point is first");
-		
-	    // TC12: point is found as the last in the list
-        assertEquals(point2,ray.findClosestPoint(geometries3.findIntersections(ray)), "wrong intersection point when point is last");
-		
-			
-	}
 }

@@ -30,6 +30,7 @@ public class Point {
 	 * constructor that receives coordinates in the form of a Double3 and assigns it to the object 
 	 */
 	protected Point(Double3 dot) {
+		super();
 		 xyz = dot;		 
 	 }
 
@@ -37,11 +38,10 @@ public class Point {
 	public boolean equals(Object obj) {
 	    if (this == obj)
 	        return true;
-	    if (obj == null)
+	    
+	    if (obj == null || !(obj instanceof Point other))
 	        return false;
-	    if (!(obj instanceof Point))
-	        return false;
-	    Point other = (Point) obj;
+
 	    return this.xyz.equals(other.xyz);
 	}
 
@@ -85,9 +85,9 @@ public class Point {
 	 * @return calculated distance squared between the object that called the function and the parameter
 	 */
 	public double distanceSquared(Point p) {
-		return (((this.xyz.d1-p.xyz.d1)*(this.xyz.d1-p.xyz.d1))
-				+ ((this.xyz.d2-p.xyz.d2)*(this.xyz.d2-p.xyz.d2))
-				+ ((this.xyz.d3-p.xyz.d3)*(this.xyz.d3-p.xyz.d3)));
+		return (((p.xyz.d1-this.xyz.d1)*(p.xyz.d1-this.xyz.d1))
+				+ ((p.xyz.d2-this.xyz.d2)*(p.xyz.d2-this.xyz.d2))
+				+ ((p.xyz.d3-this.xyz.d3)*(p.xyz.d3-this.xyz.d3)));
 	}
 	
 	/**
@@ -95,12 +95,14 @@ public class Point {
 	 * @return vector subtracted by the coordinates from the given point
 	 */
 	public Vector subtract(Point p) {
-		double p1,p2,p3;
-		
-		p1=this.xyz.d1-p.xyz.d1;
-		p2=this.xyz.d2-p.xyz.d2;
-		p3=this.xyz.d3-p.xyz.d3;
-		return new Vector(p1,p2,p3);	
+		/*double p1,p2,p3;
+		* 
+		* p1=this.xyz.d1-p.xyz.d1;
+		* p2=this.xyz.d2-p.xyz.d2;
+		* p3=this.xyz.d3-p.xyz.d3;
+		* return new Vector(p1,p2,p3);
+		*/
+		return new Vector(this.xyz.subtract(p.xyz));
 	}
 	
 }
