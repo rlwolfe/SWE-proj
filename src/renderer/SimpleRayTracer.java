@@ -20,7 +20,6 @@ public class SimpleRayTracer extends RayTracerBase {
 	 */
 	public SimpleRayTracer(Scene s) {
 		super(s);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

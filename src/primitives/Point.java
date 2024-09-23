@@ -102,7 +102,7 @@ public class Point {
 		* p3=this.xyz.d3-p.xyz.d3;
 		* return new Vector(p1,p2,p3);
 		*/
-		return new Vector(this.xyz.subtract(p.xyz));
+		return new Vector(xyz.subtract(p.xyz));
 	}
 	
 }

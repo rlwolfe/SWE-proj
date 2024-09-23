@@ -35,7 +35,7 @@ public class Ray {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		return (obj instanceof Ray other &&
+		return ((obj instanceof Ray other) &&
 				this.head.equals(other.head) &&
 				this.direction.equals(other.direction));
 	}

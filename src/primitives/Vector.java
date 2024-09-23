@@ -36,8 +36,7 @@ public class Vector extends Point{
 	}
 	
 	@Override 
-	public String toString()
-	{
+	public String toString() {
 		 return super.toString(); 
 	}
 	
@@ -97,7 +96,7 @@ public class Vector extends Point{
 	 */
 	public double dotProduct(Vector vec) {
 		return (this.xyz.d1 * vec.xyz.d1) +
-				(this.xyz.d2 * vec.xyz.d2)+
+				(this.xyz.d2 * vec.xyz.d2) +
 				(this.xyz.d3 * vec.xyz.d3);
 	}
 	
