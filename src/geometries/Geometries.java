@@ -16,7 +16,7 @@ import primitives.Ray;
  * public methods consist of: add that adds a new geometry (or more) to the list
  * Overridden methods are: findIntersections
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 	private final List<Intersectable> geometries;
 
 	/**
@@ -50,23 +50,45 @@ public class Geometries implements Intersectable {
 			this.geometries.add(geometry);
 		}
 	}
+//	@Override
+//	public List<Point> findIntersections(Ray ray) {
+//		var geoList = findGeoIntersections(ray); return geoList == null ? null
+//				: geoList.stream().map(gp -> gp.point).toList();
+//	    
+//		List<Point> intersections = new ArrayList<>();
+//
+//	    for (Intersectable geometry : geometries) {
+//	        List<Point> geometryIntersections = geometry.findIntersections(ray);
+//	        if (geometryIntersections != null) {
+//	            intersections.addAll(geometryIntersections);
+//	        }
+//	    }
+//
+//	    // Sort the intersections based on their distance from the ray's head
+//	    intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
+//	    if(intersections.isEmpty())
+//	    	return null;
+//	    
+//	    return intersections;
+//	}
+
 	@Override
-	public List<Point> findIntersections(Ray ray) {
-	    List<Point> intersections = new ArrayList<>();
-
-	    for (Intersectable geometry : geometries) {
-	        List<Point> geometryIntersections = geometry.findIntersections(ray);
-	        if (geometryIntersections != null) {
-	            intersections.addAll(geometryIntersections);
-	        }
-	    }
-
-	    // Sort the intersections based on their distance from the ray's head
-	    intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
-	    if(intersections.isEmpty())
-	    	return null;
-	    
-	    return intersections;
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		List<GeoPoint> intersections = new ArrayList<>();
+		
+			    for (Intersectable geometry : geometries) {
+			        List<GeoPoint> geometryIntersections = geometry.findGeoIntersections(ray);
+			        if (geometryIntersections != null) {
+			            intersections.addAll(geometryIntersections);
+			        }
+			    }
+		
+			    // Sort the intersections based on their distance from the ray's head
+			    //intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
+			    if(intersections.isEmpty())
+			    	return null;
+			    
+			    return intersections;
 	}
 }
 	

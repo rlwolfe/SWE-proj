@@ -2,6 +2,8 @@ package primitives;
 
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
+
 /**
  * Bella & Rachel
  * constructors accept a point and a vector
@@ -72,18 +74,36 @@ public class Ray {
 	 * @return point that is the closest to the ray's head
 	 */
 	public Point findClosestPoint(List<Point> points) {
-		if (points.isEmpty())
+		return points == null || points.isEmpty() ? null
+				: findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+//		if (points.isEmpty())
+//            return null;
+//		
+//		Point closest = points.get(0);
+//		//double dist, currDist = Double.MAX_VALUE;
+//		for (Point point : points) {
+//            //dist = head.distance(point);
+//            //if (dist < currDist) {
+//            //    currDist = dist;
+//			if (head.distance(point) < head.distance(closest))
+//                closest = point;
+//            //}
+//        }
+//		return closest;
+	}
+	
+	/**
+	 * @param geoPoints
+	 * @return closest geoPt
+	 */
+	public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPoints ) {
+		if (geoPoints.isEmpty())
             return null;
 		
-		Point closest = points.get(0);
-		//double dist, currDist = Double.MAX_VALUE;
-		for (Point point : points) {
-            //dist = head.distance(point);
-            //if (dist < currDist) {
-            //    currDist = dist;
-			if (head.distance(point) < head.distance(closest))
-                closest = point;
-            //}
+		GeoPoint closest = geoPoints.get(0);
+		for (GeoPoint geoPoint : geoPoints) {
+			if (head.distance(geoPoint.point) < head.distance(closest.point))
+                closest = geoPoint;
         }
 		return closest;
 	}

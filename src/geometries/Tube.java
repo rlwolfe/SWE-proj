@@ -44,10 +44,15 @@ public class Tube extends RadialGeometry {
 	    // If it is, return the direction opposite to the axisRay as the normal
 	    return normal.equals(Vector.ZERO) ? axis.getDirection().scale(-1).normalize() : normal;
 	}
-
+	
+	//@Override
+	//public List<Point> findIntersections(Ray ray) { return null; }
 
 	@Override
-	public List<Point> findIntersections(Ray ray) { return null; }
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

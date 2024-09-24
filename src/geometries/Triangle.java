@@ -44,33 +44,33 @@ public class Triangle extends Polygon{
 	
 	protected List<Point> getVertices() { return vertices; } 
 	
-	@Override
-	public List<Point> findIntersections(Ray ray) {
-		
-		if( this.plane.findIntersections(ray) == null) 
-			return null;
-		
-		//get the points of the triangle from the polygon
-		List<Point> points = this.getVertices();
-		
-		Vector v1 = points.get(0).subtract(ray.getHead());
-		Vector v2 = points.get(1).subtract(ray.getHead());
-		Vector v3 = points.get(2).subtract(ray.getHead());
-		
-		Vector normV1 = (v1.crossProduct(v2)).normalize();
-		Vector normV2 = (v2.crossProduct(v3)).normalize();
-		Vector normV3 = (v3.crossProduct(v1)).normalize();
-		
-		double result1 = ray.getDirection().dotProduct(normV1);
-		double result2 = ray.getDirection().dotProduct(normV2);
-		double result3 = ray.getDirection().dotProduct(normV3);
-		
-		if( (result1 < 0 && result2 < 0 && result3 < 0) 
-			|| (result1 > 0 && result2 > 0 && result3 > 0)) {
-			return this.plane.findIntersections(ray);
-		}
-		
-		return null;
+//	@Override
+//	public List<Point> findIntersections(Ray ray) {
+//		
+//		if( this.plane.findIntersections(ray) == null) 
+//			return null;
+//		
+//		//get the points of the triangle from the polygon
+//		List<Point> points = this.getVertices();
+//		
+//		Vector v1 = points.get(0).subtract(ray.getHead());
+//		Vector v2 = points.get(1).subtract(ray.getHead());
+//		Vector v3 = points.get(2).subtract(ray.getHead());
+//		
+//		Vector normV1 = (v1.crossProduct(v2)).normalize();
+//		Vector normV2 = (v2.crossProduct(v3)).normalize();
+//		Vector normV3 = (v3.crossProduct(v1)).normalize();
+//		
+//		double result1 = ray.getDirection().dotProduct(normV1);
+//		double result2 = ray.getDirection().dotProduct(normV2);
+//		double result3 = ray.getDirection().dotProduct(normV3);
+//		
+//		if( (result1 < 0 && result2 < 0 && result3 < 0) 
+//			|| (result1 > 0 && result2 > 0 && result3 > 0)) {
+//			return this.plane.findIntersections(ray);
+//		}
+//		
+//		return null;
 		
 		
 		/*
@@ -96,5 +96,5 @@ public class Triangle extends Polygon{
 		 * 
 		 * return intersections.isEmpty() ? null : intersections;
 		 */
-	}
+//	}
 }

@@ -3,6 +3,7 @@ package scene;
 import java.util.LinkedList;
 import java.util.List;
 
+import geometries.Geometries;
 import geometries.Intersectable;
 import lighting.AmbientLight;
 import primitives.Color;
@@ -16,17 +17,16 @@ import primitives.Color;
  */
 public class Scene {
 	public final String name;
-	public Color background;// = Color.BLACK;
-	public AmbientLight ambientLight;// = AmbientLight.NONE;
-	//public Geometries geometries = new Geometries();
-	public List<Intersectable> intersectables;// = new LinkedList();
+	public Color background;
+	public AmbientLight ambientLight;
+	public Geometries geometries = new Geometries();
+	public List<Intersectable> intersectables;
 	
 	public Scene(String sceneName) {
 		name = sceneName;
 		background = Color.BLACK;
 		ambientLight = AmbientLight.NONE;
-		//public Geometries geometries = new Geometries();
-		intersectables = new LinkedList();
+		intersectables = new LinkedList<Intersectable>();
 	}
 	
 	public Scene setBackground(Color backgroundColorToSet) {
@@ -39,10 +39,10 @@ public class Scene {
 		return this; 
 	}
 	
-	public Scene setIntersectables(List<Intersectable> intersectablesToSet) {
-		intersectables = intersectablesToSet;
-		return this;	
-	}
+//	public Scene setIntersectables(List<Intersectable> intersectablesToSet) {
+//		intersectables = intersectablesToSet;
+//		return this;	
+//	}
 	/*
 	 * public Scene setGeometries(Geometries geometriesToSet) { geometries =
 	 * geometriesToSet; return this; }

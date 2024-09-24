@@ -1,6 +1,7 @@
 package geometries;
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Util;
@@ -14,7 +15,7 @@ import primitives.Vector;
  * public methods consist of: getNormal with Point parameters and without
  * no overridden methods
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
     private final Point point; // 3 points
     private final Vector normal; // 3 points with a direction 
 
@@ -77,10 +78,46 @@ public class Plane implements Geometry {
      * @param ray (Ray) ray intersecting with the plane
      * @return A list of intersection points (can be empty if there are no intersections)
      */
-    @Override
-    public List<Point> findIntersections(Ray ray) {
+//    @Override
+//    public List<Point> findIntersections(Ray ray) {
+//
+//    	if(point.equals(ray.getHead()))
+//    		return null;
+//
+//    	//List<Point> intersections = new LinkedList<>(); // Use List interface
+//
+//    	// Calculate the dot product between the ray's direction and the plane's normal 
+//    	double denom = normal.dotProduct(ray.getDirection());
+//
+//    	// If the dot product is zero, the ray is parallel to the plane
+//    	if (Util.alignZero(denom) == 0) {
+//    		// Ray is parallel to the plane, no intersection
+//    		return null; // Return empty list instead of null
+//    	}
+//
+//    	/*boolean isParallel = Math.abs(denom) < 1e-10; // this is checking if the ray and plane are parallel
+//
+//    	if(isParallel)
+//    		return null; //if it is parallel then no intersections. */ 
+//
+//    	// Calculate the distance from the ray's origin to the plane
+//    	double numer = normal.dotProduct(point.subtract(ray.getHead()));
+//    	double t = numer / denom; 
+//
+//    	// Ensure the intersection point is in front of the ray's head (t > 0)
+//    	if (t <= 0) 
+//    		return null;
+//    	
+//    	// Calculate the intersection point and add it to the list
+//    	//Point intersection = ray.getPoint(t);
+//    	//intersections.add(intersection);
+//
+//    	return List.of(ray.findRayPoint(t)); // Return list of intersection points
+//    }
 
-    	if(point.equals(ray.getHead()))
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		if(point.equals(ray.getHead()))
     		return null;
 
     	//List<Point> intersections = new LinkedList<>(); // Use List interface
@@ -111,8 +148,8 @@ public class Plane implements Geometry {
     	//Point intersection = ray.getPoint(t);
     	//intersections.add(intersection);
 
-    	return List.of(ray.findRayPoint(t)); // Return list of intersection points
-    }
+    	return List.of(new GeoPoint(this, ray.findRayPoint(t))); // Return list of intersection points
+	}
 
 }
    
