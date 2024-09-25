@@ -26,7 +26,7 @@ public class Scene {
 		background = Color.BLACK;
 		ambientLight = AmbientLight.NONE;
 		//public Geometries geometries = new Geometries();
-		intersectables = new LinkedList<Intersectable>();
+		intersectables = new LinkedList();
 	}
 	
 	public Scene setBackground(Color backgroundColorToSet) {

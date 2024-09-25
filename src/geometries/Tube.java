@@ -1,9 +1,10 @@
 package geometries;
 import primitives.Ray;
 import primitives.Vector;
-import primitives.Point;
 
 import java.util.List;
+
+import primitives.Point;
 //Bella & Rachel
 
 /**
@@ -43,9 +44,7 @@ public class Tube extends RadialGeometry {
 	    // If it is, return the direction opposite to the axisRay as the normal
 	    return normal.equals(Vector.ZERO) ? axis.getDirection().scale(-1).normalize() : normal;
 	}
-	
-	@Override
-	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) { return null; }
+
 
 	@Override
 	public List<Point> findIntersections(Ray ray) { return null; }

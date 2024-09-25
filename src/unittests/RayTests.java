@@ -16,21 +16,21 @@ class RayTests {
 		Point b = new Point(2.81, -0.22, 0.92);
 		Point c = new Point(1.09, -0.09, 1.33);
 		Point d = new Point(-1.64, 0.13, 1.98);
-		List<Point> noIintersections = new LinkedList<Point>();
+		List<Point> noIintersections = new LinkedList();
 
-		List<Point> intersections1 = new LinkedList<Point>();
+		List<Point> intersections1 = new LinkedList();
 		intersections1.add(b);
 		intersections1.add(a);
 		intersections1.add(c);
 		intersections1.add(d);
 
-		List<Point> intersections2 = new LinkedList<Point>();
+		List<Point> intersections2 = new LinkedList();
 		intersections2.add(a);
 		intersections2.add(b);
 		intersections2.add(c);
 		intersections2.add(d);
 		
-		List<Point> intersections3 = new LinkedList<Point>();
+		List<Point> intersections3 = new LinkedList();
 		intersections3.add(b);
 		intersections3.add(c);
 		intersections3.add(d);

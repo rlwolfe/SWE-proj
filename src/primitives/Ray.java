@@ -2,8 +2,6 @@ package primitives;
 
 import java.util.List;
 
-import geometries.Intersectable.GeoPoint;
-
 /**
  * Bella & Rachel
  * constructors accept a point and a vector
@@ -67,22 +65,6 @@ public class Ray {
 	
 	public Point findRayPoint(double t) {
 		return head.add(direction.scale(t));
-	}
-	
-	/**
-	 * @param geoPoints
-	 * @return geoPt
-	 */
-	public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPts) {
-		if (geoPts.isEmpty())
-            return null;
-		
-		GeoPoint closest = geoPts.get(0);
-		for (GeoPoint gPt : geoPts) {
-			if (head.distance(gPt.point) < head.distance(closest.point))
-                closest = gPt;
-        }
-		return closest;
 	}
 	
 	/**

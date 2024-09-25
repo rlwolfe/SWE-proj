@@ -16,7 +16,7 @@ import primitives.Ray;
  * public methods consist of: add that adds a new geometry (or more) to the list
  * Overridden methods are: findIntersections
  */
-public class Geometries extends Intersectable {
+public class Geometries implements Intersectable {
 	private final List<Intersectable> geometries;
 
 	/**
@@ -50,30 +50,6 @@ public class Geometries extends Intersectable {
 			this.geometries.add(geometry);
 		}
 	}
-	
-	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-		if (geometries.isEmpty())
-			return null;
-			
-		List<GeoPoint> intersections = null;//new ArrayList<GeoPoint>();
-
-	    for (Intersectable geometry : geometries) {
-	        var geoPoints = geometry.findGeoIntersections(ray);
-	        if (geoPoints != null) {
-	        	if (intersections == null)
-	        		intersections = new ArrayList<GeoPoint>();
-	            intersections.addAll(geoPoints);
-	        }
-	    }
-
-	    // Sort the intersections based on their distance from the ray's head
-	    //intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
-	    if(intersections.isEmpty())
-	    	return null;
-	    
-	    return intersections;
-	}
-	
 	@Override
 	public List<Point> findIntersections(Ray ray) {
 	    List<Point> intersections = new ArrayList<>();
