@@ -10,32 +10,32 @@ import primitives.Double3;
  * public methods consist of: getIntensity
  * no Overridden methods
  */
-public class AmbientLight {
-	final private Color intensity;
+public class AmbientLight extends Light {
+	//final private Color intensity;
 	public static final AmbientLight NONE = new AmbientLight(Color.BLACK, Double3.ZERO); 
 	
 	/**
-	 * constructor that takes a color and a double3
+	 * constructor that takes a color and a double3 and passed it to parent
 	 * @param Ia
 	 * @param Ka
 	 */
 	public AmbientLight( Color Ia, Double3 Ka) {
-		intensity = Ia.scale(Ka);
+		super(Ia.scale(Ka));
 	}
 	
 	/**
-	 * constructor that takes a color and a double
+	 * constructor that takes a color and a double and passed it to parent
 	 * @param Ia
 	 * @param Ka
 	 */
 	public AmbientLight( Color Ia, double Ka) {
-		intensity = Ia.scale(Ka);
+		super(Ia.scale(Ka));
 	}
 	
 	/**
 	 * @return intensity
 	 */
-	public Color getIntensity() {
-		return intensity;
-	}
+//	public Color getIntensity() {
+//		return intensity;
+//	}
 }
