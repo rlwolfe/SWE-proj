@@ -1,11 +1,9 @@
 package geometries;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import primitives.Point;
 import primitives.Ray;
 
 
@@ -74,24 +72,24 @@ public class Geometries extends Intersectable {
 	    return intersections;
 	}
 	
-	@Override
-	public List<Point> findIntersections(Ray ray) {
-	    List<Point> intersections = new ArrayList<>();
-
-	    for (Intersectable geometry : geometries) {
-	        List<Point> geometryIntersections = geometry.findIntersections(ray);
-	        if (geometryIntersections != null) {
-	            intersections.addAll(geometryIntersections);
-	        }
-	    }
-
-	    // Sort the intersections based on their distance from the ray's head
-	    intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
-	    if(intersections.isEmpty())
-	    	return null;
-	    
-	    return intersections;
-	}
+//	@Override
+//	public List<Point> findIntersections(Ray ray) {
+//	    List<Point> intersections = new ArrayList<>();
+//
+//	    for (Intersectable geometry : geometries) {
+//	        List<Point> geometryIntersections = geometry.findIntersections(ray);
+//	        if (geometryIntersections != null) {
+//	            intersections.addAll(geometryIntersections);
+//	        }
+//	    }
+//
+//	    // Sort the intersections based on their distance from the ray's head
+//	    intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
+//	    if(intersections.isEmpty())
+//	    	return null;
+//	    
+//	    return intersections;
+//	}
 }
 	
 //	@Override

@@ -49,7 +49,8 @@ public class Ray {
 	
 	/**
 	 * @param t (double) 
-	 * @return point on the ray that passes through given double ((The method calculates a point on the beam line, at a given distance from the beam’s head))
+	 * @return point on the ray that passes through given double ((The method calculates a point on the beam line,
+	 * at a given distance from the beam’s head))
 	 */
 	public Point getPoint(double t) { //refactoring new code for ray and points on the ray
 		if(t==0)
@@ -90,19 +91,15 @@ public class Ray {
 	 * @return point that is the closest to the ray's head
 	 */
 	public Point findClosestPoint(List<Point> points) {
-		if (points.isEmpty())
-            return null;
-		
-		Point closest = points.get(0);
-		//double dist, currDist = Double.MAX_VALUE;
-		for (Point point : points) {
-            //dist = head.distance(point);
-            //if (dist < currDist) {
-            //    currDist = dist;
-			if (head.distance(point) < head.distance(closest))
-                closest = point;
-            //}
-        }
-		return closest;
+		return points == null || points.isEmpty() ?
+				null : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+//		if (points.isEmpty())
+//            return null;
+//		Point closest = points.get(0);
+//		for (Point point : points) {
+//        	if (head.distance(point) < head.distance(closest))
+//                closest = point;
+//        }
+//		return closest;
 	}
 }

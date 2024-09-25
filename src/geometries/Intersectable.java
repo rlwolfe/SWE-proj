@@ -17,7 +17,8 @@ public abstract class Intersectable {
 	 * @return nothing because this is part of an interface 
 	 */
 	public List<Point> findIntersections(Ray ray) {
-		return null;
+		var geoList = findGeoIntersections(ray);
+		return geoList == null ? null : geoList.stream().map(gp -> gp.point).toList();
 	}
 	
 	public final List<GeoPoint> findGeoIntersections(Ray r){
