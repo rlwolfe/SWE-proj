@@ -33,14 +33,14 @@ public class RenderTests {
       scene.intersectables.add(new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100), new Point(-100, -100, -100))); // down
                            // left
       scene.intersectables.add(new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))); // down
-      scene.setAmbientLight(new AmbientLight(new Color(96, 135, 208), Double3.ONE))
-         .setBackground(new Color(254, 254, 254));
+      scene.setAmbientLight(new AmbientLight(new Color(60, 60, 255), Double3.ONE))
+         .setBackground(new Color(WHITE));
 
       // right
       camera
          .setImageWriter(new ImageWriter("base render test", 500, 500))
          .renderImage()
-         .printGrid(100, new Color(YELLOW))
+         .printGrid(100, new Color(BLUE))
          .writeToImage()
          .build();
    }
