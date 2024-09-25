@@ -6,7 +6,7 @@ package geometries;
  * fields include: radius
  * there are no methods
  */
-public abstract class RadialGeometry implements Geometry{
+public abstract class RadialGeometry extends Geometry{
 	//double radius;
 	private final double radius;
 	/**
