@@ -25,14 +25,14 @@ public class LightsTests {
    private final Camera.Builder camera1                 = Camera.getBuilder()
       .setRayTracer(new SimpleRayTracer(scene1))
       .setLocation(new Point(0, 0, 1000))
-      .setDirection(new Vector(0, 1, 0), new Vector(0,1,0))
-      .setVpSize(150, 150).setVpDistance(1000);
+      .setDirection(new Vector(0, 0, -1), new Vector(0,1,0))
+      .setVpSize(500, 500).setVpDistance(2500);
    /** Second camera builder for some of tests */
    private final Camera.Builder camera2                 = Camera.getBuilder()
       .setRayTracer(new SimpleRayTracer(scene2))
       .setLocation(new Point(0, 0, 1000))
-      .setDirection(new Vector(0, 1, 0), new Vector(0,1,0))
-      .setVpSize(200, 200).setVpDistance(1000);
+      .setDirection(new Vector(0, 0, -1), new Vector(0,1,0))
+      .setVpSize(500, 500).setVpDistance(2500);
 
    /** Shininess value for most of the geometries in the tests */
    private static final int     SHININESS               = 301;
@@ -75,11 +75,11 @@ public class LightsTests {
    /** Position of the light in tests with sphere */
    private final Point          sphereLightPosition     = new Point(-50, -50, 25);
    /** Light direction (directional and spot) in tests with sphere */
-   private final Vector         sphereLightDirection    = new Vector(1, 1, -0.5);
+   private final Vector         sphereLightDirection    = new Vector(1, 15, -0.5);
    /** Position of the light in tests with triangles */
-   private final Point          trianglesLightPosition  = new Point(30, 10, -100);
+   private final Point          trianglesLightPosition  = new Point(30, 50, -100);
    /** Light direction (directional and spot) in tests with triangles */
-   private final Vector         trianglesLightDirection = new Vector(-2, -2, -2);
+   private final Vector         trianglesLightDirection = new Vector(-2, -5, -2);
 
    /** The sphere in appropriate tests */
    private final Geometry       sphere                  = new Sphere(sphereCenter, SPHERE_RADIUS)
