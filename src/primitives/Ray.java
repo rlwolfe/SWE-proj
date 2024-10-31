@@ -20,7 +20,8 @@ public class Ray {
 	 * direction of the ray
 	 */
 	final private Vector direction;
-		
+	private static final double DELTA = 0.1;
+	
 	/**
 	 * @param head (head)
 	 * @param direction (vector)
@@ -31,6 +32,12 @@ public class Ray {
 		this.head = head;
 	}
 
+	public Ray(Point head, Vector direction, Vector n) {
+		Vector deltaV = n.scale(n.dotProduct(direction) > 0 ? DELTA : - DELTA);
+		this.direction = direction.normalize();
+		this.head = head.add(deltaV);
+	}
+	
 	/**
 	 * @return result if called object equals given object
 	 */
