@@ -12,6 +12,7 @@ import geometries.Intersectable.GeoPoint;
  * Overridden methods is: toSring 
  */
 public class Ray {
+	private static final double DELTA = 0.1;
 	/**
 	 * head of the ray 
 	 */
@@ -32,10 +33,10 @@ public class Ray {
 		this.head = head;
 	}
 
-	public Ray(Point head, Vector direction, Vector n) {
-		Vector deltaV = n.scale(n.dotProduct(direction) > 0 ? DELTA : - DELTA);
+	public Ray(Point head, Vector direction, Vector normal) {
+		Vector delta = normal.scale(normal.dotProduct(direction) > 0 ? DELTA : - DELTA);
 		this.direction = direction.normalize();
-		this.head = head.add(deltaV);
+		this.head = head.add(delta);
 	}
 	
 	/**
