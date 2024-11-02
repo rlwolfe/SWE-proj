@@ -78,13 +78,6 @@ public class Camera { //implements Cloneable {
 
 	} // private default constructor
 
-	/*
-	* runs through the pixels and prints them in order to render the image
-	*
-	* public void renderImage() { for(int i = 0; i < imageWriter.getNy(); ++i) {
-		* for(int j = 0; j < imageWriter.getNx(); ++j) { castRay( imageWriter.getNx(),
-				* imageWriter.getNy(), j, i); } } }
-	*/
 
 	/**
 	 * create a ray through the center, calculate the color and color in that pixel
@@ -203,8 +196,6 @@ public class Camera { //implements Cloneable {
 		public Builder printGrid(int count, Color color) {
 			for(int i = 0; i < camera.width; ++i) {
 				for(int j = 0; j < camera.height; ++j) {
-			//for(int i = 0; i < camera.imageWriter.getNy() ; ++i) {
-				//for(int j = 0; j < camera.imageWriter.getNx(); ++j) {
 					if(j % count == 0 || i % count == 0) {
 						camera.imageWriter.writePixel(j, i, color);
 					}
@@ -251,8 +242,6 @@ public class Camera { //implements Cloneable {
 				throw new MissingResourceException("Rendering data is missing",
 						"Camera", "Width, Height, or Distance value is missing or incorrect");
 			}
-			//camera.vright=camera.vto.crossProduct(camera.vup); // will implement the vright with vupXvto
-			//camera.vright.normalize();
 
 			if (camera.imageWriter == null) {
 				throw new MissingResourceException("imageWriter is missing",

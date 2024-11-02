@@ -12,7 +12,6 @@ import geometries.Intersectable.GeoPoint;
  * Overridden methods is: toSring 
  */
 public class Ray {
-	private static final double DELTA = 0.1;
 	/**
 	 * head of the ray 
 	 */
@@ -101,13 +100,5 @@ public class Ray {
 	public Point findClosestPoint(List<Point> points) {
 		return points == null || points.isEmpty() ?
 				null : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
-//		if (points.isEmpty())
-//            return null;
-//		Point closest = points.get(0);
-//		for (Point point : points) {
-//        	if (head.distance(point) < head.distance(closest))
-//                closest = point;
-//        }
-//		return closest;
 	}
 }

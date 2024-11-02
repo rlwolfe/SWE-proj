@@ -53,7 +53,7 @@ public class Geometries extends Intersectable {
 		if (geometries.isEmpty())
 			return null;
 			
-		List<GeoPoint> intersections = null;//new ArrayList<GeoPoint>();
+		List<GeoPoint> intersections = null;
 
 	    for (Intersectable geometry : geometries) {
 	        var geoPoints = geometry.findGeoIntersections(ray);
@@ -63,56 +63,8 @@ public class Geometries extends Intersectable {
 	            intersections.addAll(geoPoints);
 	        }
 	    }
-
-	    // Sort the intersections based on their distance from the ray's head
-	    //intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
 	    if(intersections == null)
 	    	return null;
-	    
 	    return intersections;
 	}
-	
-//	@Override
-//	public List<Point> findIntersections(Ray ray) {
-//	    List<Point> intersections = new ArrayList<>();
-//
-//	    for (Intersectable geometry : geometries) {
-//	        List<Point> geometryIntersections = geometry.findIntersections(ray);
-//	        if (geometryIntersections != null) {
-//	            intersections.addAll(geometryIntersections);
-//	        }
-//	    }
-//
-//	    // Sort the intersections based on their distance from the ray's head
-//	    intersections.sort(Comparator.comparingDouble(p -> p.distance(ray.getHead())));
-//	    if(intersections.isEmpty())
-//	    	return null;
-//	    
-//	    return intersections;
-//	}
 }
-	
-//	@Override
-//	public List<Point> findIntersections(Ray ray) {
-//		List<Point> intersections = new ArrayList<>();
-//		int i = 0;
-//
-//		for(Intersectable geometry : geometries) {
-//			Geometry geoObj = (Geometry)geometry;
-//			for(Point point : geoObj.findIntersections(ray)) {
-//				if(intersections.isEmpty())		//there are no points intersected yet 
-//					intersections.add(point);	//add this intersection point
-//				else {
-//					for(Point intersect : intersections)	//there are other points already intersecting
-//						if(point.distance(ray.head) < intersect.distance(ray.head)) {	//find which intersection is first
-//							i = intersections.indexOf(intersect);		//if the new one is closer it replaces another, find the location
-//							intersections.add(i, point);				//and put it before that other one
-//							break;			// no need to check more intersections after we see one is greater
-//						}
-//				}
-//			}
-//		}
-//		if (intersections.size() == 0) { return null; }
-//		
-//		return intersections;
-//	}

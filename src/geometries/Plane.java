@@ -53,24 +53,13 @@ public class Plane extends Geometry {
         this.normal = normal;// .normalize(); // makes sure it is normalizes ( made into a length of 1) 
         //should check validity
     }
-    
-    /**
-     * @return current normal of the object
-     */
-//	
-//	 public Vector getNormal() { return normal.normalize(); // makes sure it is
-//	 normalized
-//	 }
-    
+   
     /**
 	 * @param point (Point)
      * @return normal of the object with given point
      */
     public Vector getNormal(Point point) {
-    	//Vector v1 = point.subtract(this.point); // you find the vector between two points 
-    	//Vector normalAtPoint = v1.crossProduct(normal);
-    	// Normalize the result
-        return normal.normalize(); //normalAtPoint.normalize(); // make sure it is normalized
+        return normal.normalize(); // make sure it is normalized
     }
     
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
@@ -88,11 +77,6 @@ public class Plane extends Geometry {
     		return null; // Return empty list instead of null
     	}
 
-    	/*boolean isParallel = Math.abs(denom) < 1e-10; // this is checking if the ray and plane are parallel
-
-    	if(isParallel)
-    		return null; //if it is parallel then no intersections. */ 
-
     	// Calculate the distance from the ray's origin to the plane
     	double numer = normal.dotProduct(point.subtract(ray.getHead()));
     	double t = numer / denom; 
@@ -101,54 +85,7 @@ public class Plane extends Geometry {
     	if (t <= 0) 
     		return null;
     	
-    	// Calculate the intersection point and add it to the list
-    	//Point intersection = ray.getPoint(t);
-    	//intersections.add(intersection);
-
     	return List.of(new GeoPoint(this, ray.findRayPoint(t))); // Return list of intersection points
     }
-    
-    /**
-     * Finds the intersection points between a ray and this plane
-     * @param ray (Ray) ray intersecting with the plane
-     * @return A list of intersection points (can be empty if there are no intersections)
-     */
-//    @Override
-//    public List<Point> findIntersections(Ray ray) {
-//
-//    	if(point.equals(ray.getHead()))
-//    		return null;
-//
-//    	//List<Point> intersections = new LinkedList<>(); // Use List interface
-//
-//    	// Calculate the dot product between the ray's direction and the plane's normal 
-//    	double denom = normal.dotProduct(ray.getDirection());
-//
-//    	// If the dot product is zero, the ray is parallel to the plane
-//    	if (Util.alignZero(denom) == 0) {
-//    		// Ray is parallel to the plane, no intersection
-//    		return null; // Return empty list instead of null
-//    	}
-//
-//    	/*boolean isParallel = Math.abs(denom) < 1e-10; // this is checking if the ray and plane are parallel
-//
-//    	if(isParallel)
-//    		return null; //if it is parallel then no intersections. */ 
-//
-//    	// Calculate the distance from the ray's origin to the plane
-//    	double numer = normal.dotProduct(point.subtract(ray.getHead()));
-//    	double t = numer / denom; 
-//
-//    	// Ensure the intersection point is in front of the ray's head (t > 0)
-//    	if (t <= 0) 
-//    		return null;
-//    	
-//    	// Calculate the intersection point and add it to the list
-//    	//Point intersection = ray.getPoint(t);
-//    	//intersections.add(intersection);
-//
-//    	return List.of(ray.findRayPoint(t)); // Return list of intersection points
-//    }
-
 }
    

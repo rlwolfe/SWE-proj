@@ -31,11 +31,4 @@ public class AmbientLight extends Light {
 	public AmbientLight( Color Ia, double Ka) {
 		super(Ia.scale(Ka));
 	}
-	
-	/**
-	 * @return intensity
-	 */
-//	public Color getIntensity() {
-//		return intensity;
-//	}
 }

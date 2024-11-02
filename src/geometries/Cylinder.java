@@ -12,7 +12,6 @@ import primitives.Vector;
  * no overridden methods
  */
 public class Cylinder extends Tube{
-	//private double height;
 	protected final double height;
 	/**
 	 * @param radius (double)
