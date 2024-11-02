@@ -63,12 +63,6 @@ public class Point {
 	 * @return point with the coordinates from the given parameters
 	 */
 	public Point add(Vector vec) {
-		/*
-		 * double p1,p2,p3;
-		 * 
-		 * p1=this.xyz.d1+vec.xyz.d1; p2=this.xyz.d2+vec.xyz.d2;
-		 * p3=this.xyz.d3+vec.xyz.d3; return new Point(p1,p2,p3);
-		 */
 		return new Point(xyz.add(vec.xyz));
 	} 
 
@@ -95,13 +89,6 @@ public class Point {
 	 * @return vector subtracted by the coordinates from the given point
 	 */
 	public Vector subtract(Point p) {
-		/*double p1,p2,p3;
-		* 
-		* p1=this.xyz.d1-p.xyz.d1;
-		* p2=this.xyz.d2-p.xyz.d2;
-		* p3=this.xyz.d3-p.xyz.d3;
-		* return new Vector(p1,p2,p3);
-		*/
 		return new Vector(xyz.subtract(p.xyz));
 	}
 	
